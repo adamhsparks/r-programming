@@ -33,7 +33,7 @@ source: 'https://github.com/swcarpentry/r-novice-inflammation'
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'adam.sparks@curtin.edu.au'
 
 # Navigation ------------------------------------------------
 #
@@ -78,6 +78,6 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://swcarpentry.github.io/r-novice-inflammation'
+url: 'https://adamhsparks.github.io/r-programming'
 analytics: carpentries
 lang: en
