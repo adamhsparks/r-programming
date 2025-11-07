@@ -325,6 +325,5 @@ kelvin_to_fahrenheit <- function(temp_K) {
 
 This was our basic introduction to packaging up R functions.
 To go on from here, remember to functionalise R code that you use repeatedly and incorporate it into your personal package.
-A good resource to find more guidance on packaging R code is [rOpenSci's dev guide](https://devguide.ropensci.org/).
 
 This lesson was a adapted from <https://github.com/TIBHannover/FAIR-R> under the CC-by-4.0 Licence.
