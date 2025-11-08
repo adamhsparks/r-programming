@@ -247,7 +247,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02-knitr-R.html">2. Dynamic Reports with knitr</a>
+        <a href="02-knitr-R.html">2. </a>
     </div>
 <!--/div.accordion-header-->
 
@@ -538,9 +538,11 @@ delete objects. You can force R to tidy up its memory by using
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Sample dataset of 1000 rows</span></span>
-<span><span class="va">interim_object</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span><span class="fu">rep</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span>                             <span class="fu">rep</span><span class="op">(</span><span class="fl">101</span><span class="op">:</span><span class="fl">200</span>, <span class="fl">10</span><span class="op">)</span>,</span>
-<span>                             <span class="fu">rep</span><span class="op">(</span><span class="fl">201</span><span class="op">:</span><span class="fl">300</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">interim_object</span> <span class="op">&lt;-</span> <span class="fu">data.frame</span><span class="op">(</span></span>
+<span>  <span class="fu">rep</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  <span class="fu">rep</span><span class="op">(</span><span class="fl">101</span><span class="op">:</span><span class="fl">200</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  <span class="fu">rep</span><span class="op">(</span><span class="fl">201</span><span class="op">:</span><span class="fl">300</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span><span class="fu">object.size</span><span class="op">(</span><span class="va">interim_object</span><span class="op">)</span> <span class="co"># Reports the memory size allocated to the object</span></span>
 <span><span class="fu">rm</span><span class="op">(</span><span class="st">"interim_object"</span><span class="op">)</span> <span class="co"># Removes only the object itself and not necessarily the memory allotted to it</span></span>
 <span><span class="fu">gc</span><span class="op">(</span><span class="op">)</span> <span class="co"># Force R to release memory it is no longer using</span></span>
@@ -595,7 +597,7 @@ of the files.</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -688,7 +690,7 @@ workspace.</li>
 </div>
 </div>
 </div>
-</div></section><section id="aio-02-knitr-R"><p>Content from <a href="02-knitr-R.html">Dynamic Reports with knitr</a></p>
+</div></section><section id="aio-02-knitr-R"><p>Content from <a href="02-knitr-R.html"></a></p>
 <hr>
 <p>Last updated on 2025-11-08 |
 
@@ -704,9 +706,9 @@ workspace.</li>
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How can I put my text, code, and results all in one document?</li>
-<li>How do I use <code>knitr</code>?</li>
-<li>How do I write in Markdown?</li>
+<li>What is R Markdown?</li>
+<li>How can I integrate my R code with text and plots?</li>
+<li>How can I convert .Rmd files to .html?</li>
 </ul>
 </div>
 </div>
@@ -716,106 +718,775 @@ workspace.</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Understand the value of <code>knitr</code> for generating dynamic
-documents that include text, code, and results.</li>
-<li>Control basic formatting using markdown syntax.</li>
-<li>Be able to create, edit, and compile an .Rmd document including code
-chunks and inline code.</li>
+<li>Create a .Rmd document containing R code, text, and plots</li>
+<li>Create a YAML header to control output</li>
+<li>Understand basic syntax of (R)Markdown</li>
+<li>Customise code chunks to control formatting</li>
+<li>Use code chunks and in-line code to create dynamic, reproducible
+documents</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<p><code>knitr</code> is an R package that allows you to organize your
-notes, code, and results in a single document. It’s a great tool for
-“literate programming” – the idea that your code should be readable by
-humans as well as computers! It also keeps your writing and results
-together, so if you collect some new data or change how you clean the
-data, you just have to re-compile the document and you’re up to
-date!</p>
-<p>You write <code>knitr</code> documents in a simple plain text-like
-format called markdown, which allows you to format text using intuitive
-notation, so that you can focus on the content you’re writing and
-generating a well-formatted document when needed. In fact, you can turn
-your plain text (and R code and results) into an HTML file or, if you
-have an installation of LaTeX and <a href="https://pandoc.org/" class="external-link">Pandoc</a> on your machine, a PDF, or even a
-Word document (if you must!).</p>
-<p>To get started, install the <code>knitr</code> package.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<section><h2 class="section-heading" id="original-lesson">Original Lesson<a class="anchor" aria-label="anchor" href="#original-lesson"></a>
+</h2>
+<hr class="half-width">
+<p>This episode is based on the R for Social Scientists lesson. The
+original episode can be found here, <a href="https://preview.carpentries.org/r-socialsci/06-rmarkdown.html" class="external-link uri">https://preview.carpentries.org/r-socialsci/06-rmarkdown.html</a>.</p>
+</section><section><h2 class="section-heading" id="r-markdown">R Markdown<a class="anchor" aria-label="anchor" href="#r-markdown"></a>
+</h2>
+<hr class="half-width">
+<p>R Markdown is a flexible type of document that allows you to
+seamlessly combine executable R code, and its output, with text in a
+single document. These documents can be readily converted to multiple
+static and dynamic output formats, including PDF (.pdf), Word (.docx),
+and HTML (.html).</p>
+<p>The benefit of a well-prepared R Markdown document is full
+reproducibility. This also means that, if you notice a data
+transcription error, or you are able to add more data to your analysis,
+you will be able to recompile the report without making any changes in
+the actual document.</p>
+<p>The <strong>rmarkdown</strong> package comes pre-installed with
+RStudio, so no action is necessary.</p>
+<figure><img src="fig/rmarkdown_wizards.png" alt="R Markdown wizard monsters creating a R Markdown document from a recipe. Art by Allison Horst" width="100%" style="display: block; margin: auto;" class="figure"><figcaption>
+Image credit:
+<a href="https://github.com/allisonhorst/stats-illustrations" class="external-link">Allison
+Horst</a>
+</figcaption></figure></section><section><h2 class="section-heading" id="creating-an-r-markdown-file">Creating an R Markdown file<a class="anchor" aria-label="anchor" href="#creating-an-r-markdown-file"></a>
+</h2>
+<hr class="half-width">
+<p>To create a new R Markdown document in RStudio, click File -&gt; New
+File -&gt; R Markdown:</p>
+<figure><img src="fig/new-rmd.png" alt="Screenshot of the New R Markdown file dialogue box in RStudio" class="figure mx-auto d-block"></figure><p>Then click on ‘Create Empty Document’. Normally you could enter the
+title of your document, your name (Author), and select the type of
+output, but we will be learning how to start from a blank document.</p>
+</section><section><h2 class="section-heading" id="basic-components-of-r-markdown">Basic components of R Markdown<a class="anchor" aria-label="anchor" href="#basic-components-of-r-markdown"></a>
+</h2>
+<hr class="half-width">
+<p>To control the output, a YAML (YAML Ain’t Markup Language) header is
+needed:</p>
+<pre><code>---
+title: "My Awesome Report"
+author: "Emmet Brickowski"
+date: ""
+output: html_document
+---</code></pre>
+<p>The header is defined by the three hyphens at the beginning
+(<code>---</code>) and the three hyphens at the end
+(<code>---</code>).</p>
+<p>In the YAML, the only required field is the <code>output:</code>,
+which specifies the type of output you want. This can be an
+<code>html_document</code>, a <code>pdf_document</code>, or a
+<code>word_document</code>. We will start with an HTML document and
+discuss the other options later.</p>
+<p>The rest of the fields can be deleted, if you don’t need them. After
+the header, to begin the body of the document, you start typing after
+the end of the YAML header (i.e. after the second <code>---</code>).</p>
+</section><section><h2 class="section-heading" id="markdown-syntax">Markdown syntax<a class="anchor" aria-label="anchor" href="#markdown-syntax"></a>
+</h2>
+<hr class="half-width">
+<p>Markdown is a popular markup language that allows you to add
+formatting elements to text, such as <strong>bold</strong>,
+<em>italics</em>, and <code>code</code>. The formatting will not be
+immediately visible in a markdown (.md) document, like you would see in
+a Word document. Rather, you add Markdown syntax to the text, which can
+then be converted to various other files that can translate the Markdown
+syntax. Markdown is useful because it is lightweight, flexible, and
+platform independent.</p>
+<p>Some platforms provide a real time preview of the formatting, like
+RStudio’s visual markdown editor (available from version 1.4).</p>
+<p>First, let’s create a heading! A <code>#</code> in front of text
+indicates to Markdown that this text is a heading. Adding more
+<code>#</code>s make the heading smaller, i.e. one <code>#</code> is a
+first level heading, two <code>##</code>s is a second level heading,
+etc. upto the 6th level heading.</p>
+<pre><code><span><span class="co"># Title</span></span>
+<span><span class="co">## Section</span></span>
+<span><span class="co">### Sub-section</span></span>
+<span><span class="co">#### Sub-sub section</span></span>
+<span><span class="co">##### Sub-sub-sub section</span></span>
+<span><span class="co">###### Sub-sub-sub-sub section</span></span></code></pre>
+<p>(only use a level if the one above is also in use)</p>
+<p>Since we have already defined our title in the YAML header, we will
+use a section heading to create an Introduction section.</p>
+<pre><code><span><span class="co">## Introduction</span></span></code></pre>
+<p>You can make things <strong>bold</strong> by surrounding the word
+with double asterisks, <code>**bold**</code>, or double underscores,
+<code>__bold__</code>; and <em>italicize</em> using single asterisks,
+<code>*italics*</code>, or single underscores,
+<code>_italics_</code>.</p>
+<p>You can also combine <strong>bold</strong> and <em>italics</em> to
+write something <strong><em>really</em></strong> important with
+triple-asterisks, <code>***really***</code>, or underscores,
+<code>___really___</code>; and, if you’re feeling bold (pun intended),
+you can also use a combination of asterisks and underscores,
+<code>**_really_**</code>, <code>**_really_**</code>.</p>
+<p>To create <code>code-type</code> font, surround the word with
+backticks, <code>`code-type`</code>.</p>
+<p>Now that we’ve learned a couple of things, it might be useful to
+implement them:</p>
+<pre><code>## Introduction
+
+This report uses the **tidyverse** package along with the *SAFI* dataset,
+which has columns that include:</code></pre>
+<p>Then we can create a list for the variables using <code>-</code>,
+<code>+</code>, or <code>*</code> keys.</p>
+<pre><code>## Introduction
+
+This report uses the **tidyverse** package along with the *SAFI* dataset,
+which has columns that include:
+
+- village
+- interview_date
+- no_members
+- years_liv
+- respondent_wall_type
+- rooms</code></pre>
+<p>You can also create an ordered list using numbers:</p>
+<pre><code>1. village
+2. interview_date
+3. no_members
+4. years_liv
+5. respondent_wall_type
+6. rooms</code></pre>
+<p>And nested items by tab-indenting:</p>
+<pre><code>- village
+  + Name of village
+- interview_date
+  + Date of interview
+- no_members
+  + How many family members lived in a house
+- years_liv
+  + How many years respondent has lived in village or neighbouring village
+- respondent_wall_type
+  + Type of wall of house
+- rooms
+  + Number of rooms in house</code></pre>
+<p>For more Markdown syntax see <a href="https://www.markdownguide.org/basic-syntax" class="external-link">the following
+reference guide</a>.</p>
+<p>Now we can render the document into HTML by clicking the
+<strong>Knit</strong> button in the top of the Source pane (top left),
+or use the keyboard shortcut
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Windows and Linux, and
+<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>K</kbd> on Mac. If you haven’t
+saved the document yet, you will be prompted to do so when you
+<strong>Knit</strong> for the first time.</p>
+<figure><img src="fig/rmd-rmd_to_html.png" alt="The 'knitting' process: First, R Markdown is converted to Markdown, which is then converted (via pandoc) to .html, .pdf, .docx, etc." class="figure mx-auto d-block"></figure></section><section><h2 class="section-heading" id="writing-an-r-markdown-report">Writing an R Markdown report<a class="anchor" aria-label="anchor" href="#writing-an-r-markdown-report"></a>
+</h2>
+<hr class="half-width">
+<p>Now we will add some R code from our previous data wrangling and
+visualisation, which means we need to make sure
+<strong>tidyverse</strong> is loaded. It is not enough to load
+<strong>tidyverse</strong> from the console, we will need to load it
+within our R Markdown document. The same applies to our data. To load
+these, we will need to create a ‘code chunk’ at the top of our document
+(below the YAML header).</p>
+<p>A code chunk can be inserted by clicking Code &gt; Insert Chunk, or
+by using the keyboard shortcuts
+<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> on Windows and Linux, and
+<kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> on Mac.</p>
+<p>The syntax of a code chunk is:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="in">```{r chunk-name}</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="in">"Here is where you place the R code that you want to run."</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="in">```</span></span></code></pre>
+</div>
+<p>An R Markdown document knows that this text is not part of the report
+from the <code>```</code> that begins and ends the chunk. It also knows
+that the code inside of the chunk is R code from the <code>r</code>
+inside of the curly braces (<code>{}</code>). After the <code>r</code>
+you can add a name for the code chunk. Naming a chunk is optional, but
+recommended. Each chunk name must be unique, and only contain
+alphanumeric characters and <code>-</code>.</p>
+<p>To load <strong>tidyverse</strong> and our
+<code>SAFI_clean.csv</code> file, we will insert a chunk and call it
+‘setup’. Since we don’t want this code or the output to show in our
+knitted HTML document, we add an <code>include = FALSE</code> option
+after the code chunk name (<code>{r setup, include = FALSE}</code>).</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="in">```{r setup, include = FALSE}</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="in">library(here)</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="in">interviews &lt;- read_csv(here("data/SAFI_clean.csv"), na = "NULL")</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="in">```</span></span></code></pre>
+</div>
+<div id="important-note" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="important-note" class="callout-inner">
+<h3 class="callout-title">Important Note!</h3>
+<div class="callout-content">
+<p>The file paths you give in a .Rmd document, e.g. to load a .csv file,
+are relative to the .Rmd document, <strong>not</strong> the project
+root.</p>
+<p>As suggested in the Starting with Data episode, we highly recommend
+the use of the <code>here()</code> function to keep the file paths
+consistent within your project.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="insert-table">Insert table<a class="anchor" aria-label="anchor" href="#insert-table"></a>
+</h2>
+<hr class="half-width">
+<p>Next, we will re-create a table from the Data Wrangling episode which
+shows the average household size grouped by <code>village</code> and
+<code>memb_assoc</code>. We can do this by creating a new code chunk and
+calling it ‘interview-tbl’. Or, you can come up with something more
+creative (just remember to stick to the naming rules).</p>
+<p>It isn’t necessary to <strong>Knit</strong> your document every time
+you want to see the output. Instead you can run the code chunk with the
+green triangle in the top right corner of the the chunk, or with the
+keyboard shortcuts: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on
+Windows and Linux, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on
+Mac.</p>
+<p>To make sure the table is formatted nicely in our output document, we
+will need to use the <code>kable()</code> function from the
+<strong>knitr</strong> package. The <code>kable()</code> function takes
+the output of your R code and knits it into a nice looking HTML table.
+You can also specify different aspects of the table, e.g. the column
+names, a caption, etc.</p>
+<p>Run the code chunk to make sure you get the desired output.</p>
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"knitr"</span><span class="op">)</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">interviews</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">filter</span><span class="op">(</span><span class="op">!</span><span class="fu">is.na</span><span class="op">(</span><span class="va">memb_assoc</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">village</span>, <span class="va">memb_assoc</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarize</span><span class="op">(</span>mean_no_membrs <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">no_membrs</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"We can also add a caption."</span>,</span>
+<span>               col.names <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="st">"Village"</span>, <span class="st">"Member Association"</span>,</span>
+<span>                             <span class="st">"Mean Number of Members"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
 </div>
-<p>To create a new <code>knitr</code> document in RStudio, click on File
--&gt; New File, and then select “R Markdown…” from the dropdown list.
-Accept the default options in the dialog box that follows (but note the
-other document formats to choose from, including presentations). Save
-the file and click on the dropdown arrow next to the “Knit” button at
-the top of the script window. This will bring up another dropdown menu,
-this time with a number of options for controlling <code>knitr</code>
-output. Select the “Knit to HTML” option to create an HTML document
-based on the markdown file. Compare the output to the source.</p>
-<div id="formatting-text-in-markdown" class="callout discussion">
+<table class="table">
+<caption>We can also add a caption.</caption>
+<thead><tr>
+<th align="left">Village</th>
+<th align="left">Member Association</th>
+<th align="right">Mean Number of Members</th>
+</tr></thead>
+<tbody>
+<tr>
+<td align="left">Chirodzo</td>
+<td align="left">no</td>
+<td align="right">8.062500</td>
+</tr>
+<tr>
+<td align="left">Chirodzo</td>
+<td align="left">yes</td>
+<td align="right">7.818182</td>
+</tr>
+<tr>
+<td align="left">God</td>
+<td align="left">no</td>
+<td align="right">7.133333</td>
+</tr>
+<tr>
+<td align="left">God</td>
+<td align="left">yes</td>
+<td align="right">8.000000</td>
+</tr>
+<tr>
+<td align="left">Ruaca</td>
+<td align="left">no</td>
+<td align="right">7.178571</td>
+</tr>
+<tr>
+<td align="left">Ruaca</td>
+<td align="left">yes</td>
+<td align="right">9.500000</td>
+</tr>
+</tbody>
+</table>
+<p>Many different R packages can be used to generate tables. Some of the
+more commonly used options are listed in the table below.</p>
+<table class="table">
+<colgroup>
+<col width="20%">
+<col width="19%">
+<col width="59%">
+</colgroup>
+<thead><tr>
+<th>Name</th>
+<th>Creator(s)</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><a href="https://condformat.sergioller.com/index.html" class="external-link">condformat</a></td>
+<td><a href="https://cran.rstudio.com/web/packages/condformat/index.html" class="external-link">Oller
+Moreno (2022)</a></td>
+<td>Apply and visualize conditional formatting to data frames in R. It
+renders a data frame with cells formatted according to criteria defined
+by rules, using a tidy evaluation syntax.</td>
+</tr>
+<tr>
+<td><a href="https://rstudio.github.io/DT/" class="external-link">DT</a></td>
+<td><a href="https://cran.r-project.org/web/packages/DT/index.html" class="external-link">Xie
+et al. (2023)</a></td>
+<td>Data objects in R can be rendered as HTML tables using the
+JavaScript library ‘DataTables’ (typically via R Markdown or Shiny). The
+‘DataTables’ library has been included in this R package.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/renkun-ken/formattable" class="external-link">formattable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/formattable/index.html" class="external-link">Ren
+and Russell (2021)</a></td>
+<td>Provides functions to create formattable vectors and data frames.
+‘Formattable’ vectors are printed with text formatting, and formattable
+data frames are printed with multiple types of formatting in HTML to
+improve the readability of data presented in tabular form rendered on
+web pages.</td>
+</tr>
+<tr>
+<td><a href="https://davidgohel.github.io/flextable/" class="external-link">flextable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/flextable/index.html" class="external-link">Gohel
+and Skintzos (2023)</a></td>
+<td>Use a grammar for creating and customizing pretty tables. The
+following formats are supported: ‘HTML’, ‘PDF’, ‘RTF’, ‘Microsoft Word’,
+‘Microsoft PowerPoint’ and R ‘Grid Graphics’. ‘R Markdown’, ‘Quarto’,
+and the package ‘officer’ can be used to produce the result files.</td>
+</tr>
+<tr>
+<td><a href="https://gt.rstudio.com/" class="external-link">gt</a></td>
+<td><a href="https://cloud.r-project.org/web/packages/gt/index.html" class="external-link">Iannone et
+al. (2022)</a></td>
+<td>Build display tables from tabular data with an easy-to-use set of
+functions. With its progressive approach, we can construct display
+tables with cohesive table parts. Table values can be formatted using
+any of the included formatting functions.</td>
+</tr>
+<tr>
+<td><a href="https://hughjonesd.github.io/huxtable/" class="external-link">huxtable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/huxtable/index.html" class="external-link">Hugh-Jones
+(2022)</a></td>
+<td>Creates styled tables for data presentation. Export to HTML, LaTeX,
+RTF, ‘Word’, ‘Excel’, and ‘PowerPoint’. Simple, modern interface to
+manipulate borders, size, position, captions, colours, text styles and
+number formatting.</td>
+</tr>
+<tr>
+<td><a href="https://rapporter.github.io/pander/" class="external-link">pander</a></td>
+<td><a href="https://cran.r-project.org/web/packages/pander/index.html" class="external-link">Daróczi
+and Tsegelskyi (2022)</a></td>
+<td>Contains some functions catching all messages, ‘stdout’ and other
+useful information while evaluating R code and other helpers to return
+user specified text elements (e.g., header, paragraph, table, image,
+lists etc.) in ‘pandoc’ markdown or several types of R objects similarly
+automatically transformed to markdown format.</td>
+</tr>
+<tr>
+<td><a href="https://pixiedust.github.io/pixiedust/" class="external-link">pixiedust</a></td>
+<td><a href="https://cran.rstudio.com/web/packages/pixiedust/index.html" class="external-link">Nutter
+and Kretch (2021)</a></td>
+<td>‘pixiedust’ provides tidy data frames with a programming interface
+intended to be similar to ’ggplot2’s system of layers with fine-tuned
+control over each cell of the table.</td>
+</tr>
+<tr>
+<td><a href="https://glin.github.io/reactable/" class="external-link">reactable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/reactable/index.html" class="external-link">Lin
+et al. (2023)</a></td>
+<td>Interactive data tables for R, based on the ‘React Table’ JavaScript
+library. Provides an HTML widget that can be used in ‘R Markdown’ or
+‘Quarto’ documents, ‘Shiny’ applications, or viewed from an R
+console.</td>
+</tr>
+<tr>
+<td><a href="http://jrowen.github.io/rhandsontable/" class="external-link">rhandsontable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/rhandsontable/index.html" class="external-link">Owen
+et al. (2021)</a></td>
+<td>An R interface to the ‘Handsontable’ JavaScript library, which is a
+minimalist Excel-like data grid editor.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cran/stargazer" class="external-link">stargazer</a></td>
+<td><a href="https://cran.r-project.org/web/packages/stargazer/index.html" class="external-link">Hlavac
+(2022)</a></td>
+<td>Produces LaTeX code, HTML/CSS code and ASCII text for well-formatted
+tables that hold regression analysis results from several models
+side-by-side, as well as summary statistics.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dmurdoch/tables" class="external-link">tables</a></td>
+<td><a href="https://cran.r-project.org/web/packages/tables/index.html" class="external-link">Murdoch
+(2022)</a></td>
+<td>Computes and displays complex tables of summary statistics. Output
+may be in LaTeX, HTML, plain text, or an R matrix for further
+processing.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/spgarbet/tangram" class="external-link">tangram</a></td>
+<td><a href="https://cran.r-project.org/web/packages/tangram/index.html" class="external-link">Garbett
+et al. (2023)</a></td>
+<td>Provides an extensible formula system to quickly and easily create
+production quality tables. The processing steps are a formula parser,
+statistical content generation from data defined by a formula, and
+rendering into a table.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cran/xtable" class="external-link">xtable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/xtable/index.html" class="external-link">Dahl et
+al. (2019)</a></td>
+<td>Coerce data to LaTeX and HTML tables.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cardiomoon/ztable" class="external-link">ztable</a></td>
+<td><a href="https://cran.r-project.org/web/packages/ztable/index.html" class="external-link">Moon
+(2021)</a></td>
+<td>Makes zebra-striped tables (tables with alternating row colors) in
+LaTeX and HTML formats easily from a data.frame, matrix, lm, aov, anova,
+glm, coxph, nls, fitdistr, mytable and cbind.mytable objects.</td>
+</tr>
+</tbody>
+</table></section><section><h2 class="section-heading" id="customising-chunk-output">Customising chunk output<a class="anchor" aria-label="anchor" href="#customising-chunk-output"></a>
+</h2>
+<hr class="half-width">
+<p>We mentioned using <code>include = FALSE</code> in a code chunk to
+prevent the code and output from printing in the knitted document. There
+are additional options available to customise how the code-chunks are
+presented in the output document. The options are entered in the code
+chunk after <code>chunk-name</code> and separated by commas,
+<em>e.g.</em>
+<code>{r chunk-name, eval = FALSE, echo = TRUE}</code>.</p>
+<table class="table">
+<colgroup>
+<col width="5%">
+<col width="5%">
+<col width="88%">
+</colgroup>
+<thead><tr>
+<th>Option</th>
+<th>Options</th>
+<th>Output</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>eval</code></td>
+<td>
+<code>TRUE</code> or <code>FALSE</code>
+</td>
+<td>Whether or not the code within the code chunk should be run.</td>
+</tr>
+<tr>
+<td><code>echo</code></td>
+<td>
+<code>TRUE</code> or <code>FALSE</code>
+</td>
+<td>Choose if you want to show your code chunk in the output document.
+<code>echo = TRUE</code> will show the code chunk.</td>
+</tr>
+<tr>
+<td><code>include</code></td>
+<td>
+<code>TRUE</code> or <code>FALSE</code>
+</td>
+<td>Choose if the output of a code chunk should be included in the
+document. <code>FALSE</code> means that your code will run, but will not
+show up in the document.</td>
+</tr>
+<tr>
+<td><code>warning</code></td>
+<td>
+<code>TRUE</code> or <code>FALSE</code>
+</td>
+<td>Whether or not you want your output document to display potential
+warning messages produced by your code.</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>
+<code>TRUE</code> or <code>FALSE</code>
+</td>
+<td>Whether or not you want your output document to display potential
+messages produced by your code.</td>
+</tr>
+<tr>
+<td><code>fig.align</code></td>
+<td>
+<code>default</code>, <code>left</code>, <code>right</code>,
+<code>center</code>
+</td>
+<td>Where the figure from your R code chunk should be output on the
+page</td>
+</tr>
+</tbody>
+</table>
+<div id="tip" class="callout">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="bell"></i>
 </div>
-<span class="callout-header">Discussion</span>
-<div id="formatting-text-in-markdown" class="callout-inner">
-<h3 class="callout-title">Formatting Text in Markdown</h3>
+<span class="callout-header">Callout</span>
+<div id="tip" class="callout-inner">
+<h3 class="callout-title">Tip</h3>
 <div class="callout-content">
-<p>Visit <a href="https://rmarkdown.rstudio.com/authoring_basics.html" class="external-link uri">https://rmarkdown.rstudio.com/authoring_basics.html</a> and
-briefly check out some of the formatting options.</p>
-<p>In the example document add</p>
 <ul>
-<li>Headers using <code>#</code>
-</li>
-<li>Emphasis using asterisk: *italics* and **bold**</li>
-<li>Lists using <code>*</code> and numbered lists using <code>1.</code>,
-<code>2.</code>, etc.</li>
-<li>
-<strong>Bonus:</strong> Create a table</li>
+<li>The default settings for the above chunk options are all
+<code>TRUE</code>.</li>
+<li>The default settings can be modified per chunk, or with
+<code>knitr::opts_chunk$set()</code>,</li>
+<li>Entering <code>knitr::opts_chunk$set(echo = FALSE)</code> will
+change the default of value of <code>echo</code> to <code>FALSE</code>
+for <strong>every</strong> code chunk in the document.</li>
 </ul>
 </div>
 </div>
 </div>
-<p>Markdown also supports LaTeX equation editing. We can display pretty
-equations by enclosing them in <code>$</code>, e.g.,
-<code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> renders as: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>The top of the source (<code>.Rmd</code>) file has some header
-material in YAML format (enclosed by triple dashes). Some of this gets
-displayed in the output header, other of it provides formatting
-information to the conversion engine.</p>
-<p>To distinguish R code from text, RMarkdown uses three back-ticks
-followed by <code>{r}</code> to distinguish a “code chunk”. In RStudio,
-the keyboard shortcut to create a code chunk is
-<kbd>Command</kbd>+<kbd>Option</kbd>+<kbd>I</kbd> or
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd>.</p>
-<p>A code chunk will set off the code and its results in the output
-document, but you can also print the results of code within a text block
-by enclosing code like so: <code>r code-here</code>.</p>
-<div id="use-knitr-to-produce-a-report" class="callout discussion">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
-<span class="callout-header">Discussion</span>
-<div id="use-knitr-to-produce-a-report" class="callout-inner">
-<h3 class="callout-title">Use knitr to Produce a Report</h3>
+<span class="callout-header">Challenge</span>
+<div id="exercise" class="callout-inner">
+<h3 class="callout-title">Exercise</h3>
 <div class="callout-content">
-<ol style="list-style-type: decimal">
-<li>Open a new .Rmd script and save it as inflammation_report.Rmd</li>
-<li>Copy code from earlier into code chunks to read the inflammation
-data and plot average inflammation.</li>
-<li>Add a few notes describing what the code does and what the main
-findings are. Include an in-line calculation of the median inflammation
-level.</li>
+<p>Play around with the different options in the chunk with the code for
+the table, and re-<strong>Knit</strong> to see what each option does to
+the output.</p>
+<p>What happens if you use <code>eval = FALSE</code> and
+<code>echo = FALSE</code>? What is the difference between this and
+<code>include = FALSE</code>?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Solution to Exercise </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
+create another chunk with <code>{r include = FALSE}</code> to compare.
+<code>eval = FALSE</code> and <code>echo = FALSE</code> will neither run
+the code in the chunk, nor show the code in the knitted document. The
+code chunk essentially doesn’t exist in the knitted document as it was
+never run. Whereas <code>include = FALSE</code> will run the code and
+store the output for later use.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="in-line-r-code">In-line R code<a class="anchor" aria-label="anchor" href="#in-line-r-code"></a>
+</h2>
+<hr class="half-width">
+<p>Now we will use some in-line R code to present some descriptive
+statistics. To use in-line R-code, we use the same backticks that we
+used in the Markdown section, with an <code>r</code> to specify that we
+are generating R-code. The difference between in-line code and a code
+chunk is the number of backticks. In-line R code uses one backtick
+(<code>`r`</code>), whereas code chunks use three backticks
+(<code>```r```</code>).</p>
+<p>For example, today’s date is <code>`r Sys.Date()`</code>, will be
+rendered as: today’s date is 2025-11-08. The code will display today’s
+date in the output document (well, technically the date the document was
+last knitted).</p>
+<p>The best way to use in-line R code, is to minimise the amount of code
+you need to produce the in-line output by preparing the output in code
+chunks. Let’s say we’re interested in presenting the average household
+size in a village.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># create a summary data frame with the mean household size by village</span></span>
+<span><span class="va">mean_household</span> <span class="op">&lt;-</span> <span class="va">interviews</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">group_by</span><span class="op">(</span><span class="va">village</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>    <span class="fu">summarize</span><span class="op">(</span>mean_no_membrs <span class="op">=</span> <span class="fu">mean</span><span class="op">(</span><span class="va">no_membrs</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># and select the village we want to use</span></span>
+<span><span class="va">mean_chirodzo</span> <span class="op">&lt;-</span> <span class="va">mean_household</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">filter</span><span class="op">(</span><span class="va">village</span> <span class="op">==</span> <span class="st">"Chirodzo"</span><span class="op">)</span></span></code></pre>
+</div>
+<p>Now we can make an informative statement on the means of each
+village, and include the mean values as in-line R-code. For example:</p>
+<p>The average household size in the village of Chirodzo is
+<code>`r round(mean_chirodzo$mean_no_membrs, 2)`</code></p>
+<p>becomes…</p>
+<p>The average household size in the village of Chirodzo is 7.08.</p>
+<p>Because we are using in-line R code instead of the actual values, we
+have created a dynamic document that will automatically update if we
+make changes to the dataset and/or code chunks.</p>
+</section><section><h2 class="section-heading" id="plots">Plots<a class="anchor" aria-label="anchor" href="#plots"></a>
+</h2>
+<hr class="half-width">
+<p>Create a new set of data using this code chunk.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interviews_plotting</span> <span class="op">&lt;-</span> <span class="va">interviews</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co">## pivot wider by items_owned</span></span>
+<span>  <span class="fu">separate_rows</span><span class="op">(</span><span class="va">items_owned</span>, sep <span class="op">=</span> <span class="st">";"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co">## if there were no items listed, changing NA to no_listed_items</span></span>
+<span>  <span class="fu">replace_na</span><span class="op">(</span><span class="fu">list</span><span class="op">(</span>items_owned <span class="op">=</span> <span class="st">"no_listed_items"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>items_owned_logical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">items_owned</span>,</span>
+<span>              values_from <span class="op">=</span> <span class="va">items_owned_logical</span>,</span>
+<span>              values_fill <span class="op">=</span> <span class="fu">list</span><span class="op">(</span>items_owned_logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co">## pivot wider by months_lack_food</span></span>
+<span>  <span class="fu">separate_rows</span><span class="op">(</span><span class="va">months_lack_food</span>, sep <span class="op">=</span> <span class="st">";"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>months_lack_food_logical <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">months_lack_food</span>,</span>
+<span>              values_from <span class="op">=</span> <span class="va">months_lack_food_logical</span>,</span>
+<span>              values_fill <span class="op">=</span> <span class="fu">list</span><span class="op">(</span>months_lack_food_logical <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="co">## add some summary columns</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>number_months_lack_food <span class="op">=</span> <span class="fu">rowSums</span><span class="op">(</span><span class="fu">select</span><span class="op">(</span><span class="va">.</span>, <span class="va">Jan</span><span class="op">:</span><span class="va">May</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">mutate</span><span class="op">(</span>number_items <span class="op">=</span> <span class="fu">rowSums</span><span class="op">(</span><span class="fu">select</span><span class="op">(</span><span class="va">.</span>, <span class="va">bicycle</span><span class="op">:</span><span class="va">car</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+</div>
+<div id="exercise-1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-1" class="callout-inner">
+<h3 class="callout-title">Exercise</h3>
+<div class="callout-content">
+<p>Create a new code chunk for the plot, and copy the code from any of
+the plots we created in the previous episode to produce a plot in the
+chunk. I recommend one of the colourful plots.</p>
+<p>If you are feeling adventurous, you can also create a new plot with
+the <code>interviews_plotting</code> data frame.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interviews_plotting</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">respondent_wall_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">village</span><span class="op">)</span><span class="op">)</span></span></code></pre>
+</div>
+<figure><img src="fig/02-knitr-R-rendered-my-fancy-plot-1.png" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
+</div>
+</div>
+</div>
+</div>
+<p>We can also create a caption with the chunk option
+<code>fig.cap</code>.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">MARKDOWN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode markdown" tabindex="0"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="in">```{r chunk-name, fig.cap = "I made this plot while attending an</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="in">awesome Data Carpentries workshop where I learned a ton of cool stuff!"}</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="in">Code for plot</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="in">```</span></span></code></pre>
+</div>
+<p>…or, ideally, something more informative.</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interviews_plotting</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">ggplot</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">respondent_wall_type</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill <span class="op">=</span> <span class="va">village</span><span class="op">)</span>, position <span class="op">=</span> <span class="st">"dodge"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Type of Wall in Home"</span>, y <span class="op">=</span> <span class="st">"Count"</span>, fill <span class="op">=</span> <span class="st">"Village Name"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">scale_fill_viridis_d</span><span class="op">(</span><span class="op">)</span> <span class="co"># add colour deficient friendly palette</span></span></code></pre>
+</div>
+<figure style="text-align: center"><img src="fig/02-knitr-R-rendered-caption-plot-1.png" alt="I made this plot while attending an awesome Data Carpentries workshop where I learned a ton of cool stuff!" class="figure mx-auto d-block"><figcaption>
+I made this plot while attending an awesome Data Carpentries workshop
+where I learned a ton of cool stuff!
+</figcaption></figure></section><section><h2 class="section-heading" id="other-output-options">Other output options<a class="anchor" aria-label="anchor" href="#other-output-options"></a>
+</h2>
+<hr class="half-width">
+<p>You can convert R Markdown to a PDF or a Word document (among
+others). Click the little triangle next to the <strong>Knit</strong>
+button to get a drop-down menu. Or you could put
+<code>pdf_document</code> or <code>word_document</code> in the initial
+header of the file.</p>
+<pre><code>---
+title: "My Awesome Report"
+author: "Emmet Brickowski"
+date: ""
+output: word_document
+---</code></pre>
+<div id="note-creating-pdf-documents" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="note-creating-pdf-documents" class="callout-inner">
+<h3 class="callout-title">Note: Creating PDF documents</h3>
+<div class="callout-content">
+<p>Creating .pdf documents may require installation of some extra
+software. The R package <code>tinytex</code> provides some tools to help
+make this process easier for R users. With <code>tinytex</code>
+installed, run <code>tinytex::install_tinytex()</code> to install the
+required software (you’ll only need to do this once) and then when you
+<strong>Knit</strong> to pdf <code>tinytex</code> will automatically
+detect and install any additional LaTeX packages that are needed to
+produce the pdf document. Visit the <a href="https://yihui.org/tinytex/" class="external-link">tinytex website</a> for more
+information.</p>
+</div>
+</div>
+</div>
+<div id="note-inserting-citations-into-an-r-markdown-file" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="note-inserting-citations-into-an-r-markdown-file" class="callout-inner">
+<h3 class="callout-title">Note: Inserting citations into an R Markdown
+file</h3>
+<div class="callout-content">
+<p>It is possible to insert citations into an R Markdown file using the
+editor toolbar. The editor toolbar includes commonly seen formatting
+buttons generally seen in text editors (<em>e.g.</em>, bold and italic
+buttons). The toolbar is accessible by using the settings dropdown menu
+(next to the ‘Knit’ dropdown menu) to select ‘Use Visual Editor’, also
+accessible through the shortcut ‘Crtl+Shift+F4’. From here, clicking
+‘Insert’ allows ‘Citation’ to be selected (shortcut: ‘Crtl+Shift+F8’).
+For example, searching ‘10.1007/978-3-319-24277-4’ in ‘From DOI’ and
+inserting will provide the citation for <code>ggplot2</code> <span class="citation">[@wickham2016]</span>. This will also save the
+citation(s) in ‘references.bib’ in the current working directory. Visit
+the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link">R
+Studio website</a> for more information. Tip: obtaining citation
+information from relevant packages can be done by using
+<code>citation("package")</code>.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li><a href="https://kbroman.org/knitr_knutshell" class="external-link">Knitr in a knutshell
+tutorial</a></li>
 <li>
-<code>knit</code> the document and view the html result.</li>
-</ol>
-</div>
-</div>
-</div>
+<a href="https://www.amazon.com/exec/obidos/ASIN/1482203537/7210-20" class="external-link">Dynamic
+Documents with R and knitr</a> (book)</li>
+<li><a href="https://rmarkdown.rstudio.com" class="external-link">R Markdown
+documentation</a></li>
+<li><a href="https://github.com/rstudio/cheatsheets/blob/master/rmarkdown-2.0.pdf" class="external-link">R
+Markdown cheat sheet</a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/getting-started-with-r-markdown/" class="external-link">Getting
+started with R Markdown</a></li>
+<li><a href="https://commonmark.org/help/tutorial/" class="external-link">Markdown
+tutorial</a></li>
+<li>
+<a href="https://bookdown.org/yihui/rmarkdown/" class="external-link">R Markdown: The
+Definitive Guide</a> (book by Rstudio team)</li>
+<li><a href="https://www.rstudio.com/resources/webinars/reproducible-reporting/" class="external-link">Reproducible
+Reporting</a></li>
+<li><a href="https://www.rstudio.com/resources/webinars/introducing-bookdown/" class="external-link">Introducing
+Bookdown</a></li>
+</ul>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -824,15 +1495,15 @@ level.</li>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Use knitr to generate reports that combine text, code, and
-results.</li>
-<li>Use Markdown to format text.</li>
-<li>Put code in blocks delimited by triple back quotes followed by
-<code>{r}</code>.</li>
+<li>R Markdown is a useful language for creating reproducible documents
+combining text and executable R-code.</li>
+<li>Specify chunk options to control formatting of the output
+document</li>
 </ul>
 </div>
 </div>
-</div></section><section id="aio-03-making-packages-R"><p>Content from <a href="03-making-packages-R.html">Making Packages in R</a></p>
+</div>
+</section></section><section id="aio-03-making-packages-R"><p>Content from <a href="03-making-packages-R.html">Making Packages in R</a></p>
 <hr>
 <p>Last updated on 2025-11-08 |
 
