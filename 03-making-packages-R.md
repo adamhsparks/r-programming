@@ -78,11 +78,11 @@ Bonus points for squeezing in an `R` ;-)
 
 Also add the `source files` we created earlier (the first versions of `center.R` and `rescale.R`), so that we have some example code right away.
 
-<img src="../fig/08-RStudio-new-package.png" alt="New package in RStudio" width="500" />
+<img src="fig/08-RStudio-new-package.png" alt="New package in RStudio" width="500" />
 
 In case you have learned about version control already, it would be good practice to `create a git repository` now and `git commit` each step of building this package.
 
-<img src="../fig/08-RStudio-new-package-git.png" alt="Default package files in RStudio's Git pane" width="500" />
+<img src="/fig/08-RStudio-new-package-git.png" alt="Default package files in RStudio's Git pane" width="500" />
 
 RStudio's "skeleton" package can already be built, using the `Build > Install and Restart` option.
 Note the `library(...)` line that appears in the console.
