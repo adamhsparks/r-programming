@@ -33,7 +33,7 @@ source: 'https://github.com/swcarpentry/r-novice-inflammation'
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: 'team@carpentries.org'
+contact: 'adam.sparks@curtin.edu.au'
 
 # Navigation ------------------------------------------------
 #
@@ -58,31 +58,19 @@ contact: 'team@carpentries.org'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes: 
-- 01-starting-with-data.Rmd
-- 02-func-R.Rmd
-- 03-loops-R.Rmd
-- 04-cond.Rmd
-- 05-cmdline.Rmd
-- 06-best-practices-R.Rmd
-- 07-knitr-R.Rmd
-- 08-making-packages-R.Rmd
-- 09-supp-intro-rstudio.Rmd
-- 10-supp-addressing-data.Rmd
-- 11-supp-read-write-csv.Rmd
-- 12-supp-factors.Rmd
-- 13-supp-data-structures.Rmd
-- 14-supp-call-stack.Rmd
-- 15-supp-loops-in-depth.Rmd
+episodes:
+- 01-best-practices-R.Rmd
+- 02-knitr-R.Rmd
+- 03-making-packages-R.Rmd
 
 # Information for Learners
-learners: 
+learners:
 
 # Information for Instructors
-instructors: 
+instructors:
 
 # Learner Profiles
-profiles: 
+profiles:
 
 # Customisation ---------------------------------------------
 #
@@ -90,6 +78,6 @@ profiles:
 # sandpaper and varnish versions) should live
 
 
-url: 'https://swcarpentry.github.io/r-novice-inflammation'
+url: 'https://adamhsparks.github.io/r-programming'
 analytics: carpentries
 lang: en
