@@ -34,7 +34,8 @@ Just one or two lines at the beginning of the file can save you or someone else 
 ```
 
 Also consider version-controlling your code as for example taught by [Software Carpentry's `git-novice` lessons][swc-lesson-git].
-Frequent commits with explanatory, synoptic commit messages are an elegant way to comment code. [RStudio enables this with a Git integration][rstudio-git].
+Frequent commits with explanatory, synoptic commit messages are an elegant way to comment code.
+[RStudio enables this with a Git integration][rstudio-git].
 
 ### Be explicit about the requirements and dependencies of your code
 
@@ -154,9 +155,11 @@ You can force R to tidy up its memory by using `gc()`.
 
 ``` r
 # Sample dataset of 1000 rows
-interim_object <- data.frame(rep(1:100, 10),
-                             rep(101:200, 10),
-                             rep(201:300, 10))
+interim_object <- data.frame(
+  rep(1:100, 10),
+  rep(101:200, 10),
+  rep(201:300, 10)
+)
 object.size(interim_object) # Reports the memory size allocated to the object
 rm("interim_object") # Removes only the object itself and not necessarily the memory allotted to it
 gc() # Force R to release memory it is no longer using
