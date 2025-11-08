@@ -61,7 +61,7 @@ contact: "adam.sparks@curtin.edu.au"
 # Order of episodes in your lesson
 episodes:
   - 01-best-practices-R.Rmd
-  - 02-knitr-R.Rmd
+  - 02-getting-started-rmarkdown.Rmd
   - 03-making-packages-R.Rmd
 
 # Information for Learners
