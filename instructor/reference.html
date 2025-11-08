@@ -322,11 +322,11 @@ and <code>else</code>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="va">x</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu">print</span><span class="op">(</span><span class="st">"value is positive"</span><span class="op">)</span></span>
+<span> <span class="fu">print</span><span class="op">(</span><span class="st">"value is positive"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="fu">print</span><span class="op">(</span><span class="st">"value is negative"</span><span class="op">)</span></span>
+<span> <span class="fu">print</span><span class="op">(</span><span class="st">"value is negative"</span><span class="op">)</span></span>
 <span><span class="op">}</span> <span class="kw">else</span><span class="op">{</span></span>
-<span>  <span class="fu">print</span><span class="op">(</span><span class="st">"value is neither positive nor negative"</span><span class="op">)</span></span>
+<span> <span class="fu">print</span><span class="op">(</span><span class="st">"value is neither positive nor negative"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre>
 </div>
 <ul><li>create a <code>for</code> loop to process elements in a collection
@@ -336,7 +336,7 @@ one at a time</li>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
+<span> <span class="fu">print</span><span class="op">(</span><span class="va">i</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre>
 </div>
 <p>This will print:</p>
@@ -368,12 +368,12 @@ are true</li>
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode r" tabindex="0"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>is_positive <span class="ot">&lt;-</span> <span class="cf">function</span>(integer_value){</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>	<span class="cf">if</span>(integer_value <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>	   <span class="cn">TRUE</span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>	}</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>	<span class="cf">else</span>{</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>	   <span class="cn">FALSE</span></span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>	{</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a> <span class="cf">if</span> (integer_value <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a> }</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a> <span class="cf">else</span>{</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="cn">FALSE</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a> {</span>
 <span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>}</span></code></pre>
 </div>
 <p>In R, the last executed line of a function is automatically
@@ -384,7 +384,7 @@ returned</p>
 </h3>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">increment_me</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">value_to_increment</span>, <span class="va">value_to_increment_by</span> <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">{</span></span>
-<span>  <span class="va">value_to_increment</span> <span class="op">+</span> <span class="va">value_to_increment_by</span></span>
+<span> <span class="va">value_to_increment</span> <span class="op">+</span> <span class="va">value_to_increment_by</span></span>
 <span><span class="op">}</span></span></code></pre>
 </div>
 <p><code>increment_me(4)</code>, will return 5</p>
@@ -403,7 +403,8 @@ returned</p>
 <li>Update packages by using
 <code>update.packages("package-name")</code>
 </li>
-<li>Load packages by using <code>library("package-name")</code>
+<li>Load packages by using <code>library("package-name")</code> or
+<code>library(package-name)</code>
 </li>
 </ul></section><section><h2 class="section-heading" id="glossary">Glossary<a class="anchor" aria-label="anchor" href="#glossary"></a></h2>
 <hr class="half-width"><dl><dt><span id="argument">argument</span></dt>
