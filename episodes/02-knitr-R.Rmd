@@ -9,6 +9,8 @@ output:
 source: Rmd
 ---
 
+## Getting Started with R Markdown
+
 ```{r setup, include=FALSE}
 source("data/download_data.R")
 ```
