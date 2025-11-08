@@ -33,7 +33,7 @@ If you want to reuse code later or want others to be able to use your code, you 
 
 An R package requires four components, visualized in the folder tree below:
 
-```         
+```
 package_name/
 ├── DESCRIPTION              # metadata about the package
 ├── man/                     # function documentation (can be generated automatically)
@@ -105,7 +105,7 @@ An R package requires four components:
 -   a `man` directory with documentation (we will create this automatically)
 -   a `NAMESPACE` file listing user-level ("exported") functions in the package (we will also create this automatically)
 
-*There are other optional components. [Read the "R packages" book](http://r-pkgs.had.co.nz/description.html) and/or the original ["Writing R Extensions" documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) for much more information.*
+*There are other optional components. [Read the "R packages" book](https://r-pkgs.had.co.nz/description.html) and/or the original ["Writing R Extensions" documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) for much more information.*
 
 ### .R files
 
@@ -118,12 +118,12 @@ Suggestion: organize in a logical manner so that you know which file holds which
 We used RStudio's import process to include the `.R` files we already had.
 However, FAIRer (because richer in metadata) `DESCRIPTION` files can be generated with `usethis::use_description()`:
 
-```         
+```
 Package: PackageName
 Type: Package
 Version: 0.1.0
 Title: What the Package Does (One Line, Title Case)
-Authors@R: 
+Authors@R:
     person(given = "First",
            family = "Last",
            role = c("aut", "cre"),
@@ -212,7 +212,7 @@ Any file name in `R/` that matches it is automatically exported, meaning offered
 If you want to publish your package, but keep some functions hidden (maybe because they only do auxiliary tasks), you can delete this default file, remove the `@export` tag from the auxiliary functions, and rerun `roxygenise()`.
 It's still a good idea to retain their other roxygen tags (esp. `@param` & `@return`).
 
-Learn more about this from the ["R packages" book](http://r-pkgs.had.co.nz/namespace.html).
+Learn more about this from the ["R packages" book](https://r-pkgs.had.co.nz/namespace.html).
 
 ### Finishing up
 
