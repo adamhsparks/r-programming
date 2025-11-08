@@ -265,7 +265,8 @@ interviews %>%
                              "Mean Number of Members"))
 ```
 
-Many different R packages can be used to generate tables. Some of the more commonly used options are listed in the table below.
+Many different R packages can be used to generate tables.
+Some of the more commonly used options are listed in the table below.
 
 | Name          | Creator(s)   | Description                              |
 |---------------|--------------|-------------------------------------------|
