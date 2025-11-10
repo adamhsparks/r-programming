@@ -217,6 +217,7 @@
       <div class="accordion-body">
         <ul><li><a href="#original-lesson">Original Lesson</a></li>
 <li><a href="#r-markdown">R Markdown</a></li>
+<li><a href="#a-note-on-quarto">A Note on Quarto</a></li>
 <li><a href="#creating-an-r-markdown-file">Creating an R Markdown file</a></li>
 <li><a href="#basic-components-of-r-markdown">Basic components of R Markdown</a></li>
 <li><a href="#markdown-syntax">Markdown syntax</a></li>
@@ -361,7 +362,21 @@ RStudio, so no action is necessary.</p>
 Image credit:
 <a href="https://github.com/allisonhorst/stats-illustrations" class="external-link">Allison
 Horst</a>
-</figcaption></figure></section><section><h2 class="section-heading" id="creating-an-r-markdown-file">Creating an R Markdown file<a class="anchor" aria-label="anchor" href="#creating-an-r-markdown-file"></a></h2>
+</figcaption></figure></section><section><h2 class="section-heading" id="a-note-on-quarto">A Note on Quarto<a class="anchor" aria-label="anchor" href="#a-note-on-quarto"></a></h2>
+<hr class="half-width"><p>Quarto is a next-generation version of R Markdown that extends its
+capabilities to support multiple programming languages (including R,
+Python, and Julia) and offers enhanced features for creating dynamic
+documents, presentations, websites, and books. Quarto builds upon the
+foundation of R Markdown while providing a more versatile and powerful
+framework for reproducible research and reporting. Unlike R Markdown,
+you must install Quarto separately from RStudio. Instructions for
+installing Quarto can be found at <a href="https://quarto.org/docs/get-started/" class="external-link uri">https://quarto.org/docs/get-started/</a>. However, Quarto
+and R Markdown can coexist on the same system, and RStudio supports both
+formats and simply resaving or renaming a .Rmd to a .qmd file will
+convert it from R Markdown to Quarto. I won’t spend time on Quarto here
+for this reason, but you can learn more about Quarto at <a href="https://quarto.org/" class="external-link uri">https://quarto.org/</a>, and the
+<a href="files/quarto-cheatsheet">cheat sheet</a>.</p>
+</section><section><h2 class="section-heading" id="creating-an-r-markdown-file">Creating an R Markdown file<a class="anchor" aria-label="anchor" href="#creating-an-r-markdown-file"></a></h2>
 <hr class="half-width"><p>To create a new R Markdown document in RStudio, click File -&gt; New
 File -&gt; R Markdown:</p>
 <figure><img src="fig/new-rmd.png" alt="Screenshot of the New R Markdown file dialogue box in RStudio" class="figure mx-auto d-block"></figure><p>Then click on ‘Create Empty Document’. Normally you could enter the
@@ -496,11 +511,11 @@ by using the keyboard shortcuts
 </div>
 <p>An R Markdown document knows that this text is not part of the report
 from the <code>```</code> that begins and ends the chunk. It also knows
-that the code inside of the chunk is R code from the <code>r</code>
-inside of the curly braces (<code>{}</code>). After the <code>r</code>
-you can add a name for the code chunk. Naming a chunk is optional, but
-recommended. Each chunk name must be unique, and only contain
-alphanumeric characters and <code>-</code>.</p>
+that the code inside the chunk is R code from the <code>r</code> inside
+the curly braces (<code>{}</code>). After the <code>r</code> you can add
+a name for the code chunk. Naming a chunk is optional, but recommended.
+Each chunk name must be unique, and only contain alphanumeric characters
+and <code>-</code>.</p>
 <p>To load <strong>tidyverse</strong> and our
 <code>SAFI_clean.csv</code> file, we will insert a chunk and call it
 ‘setup’. Since we don’t want this code or the output to show in our
@@ -523,9 +538,9 @@ after the code chunk name (<code>{r setup, include = FALSE}</code>).</p>
 <div id="important-note" class="callout-inner">
 <h3 class="callout-title">Important Note!</h3>
 <div class="callout-content">
-<p>The file paths you give in a .Rmd document, e.g. to load a .csv file,
-are relative to the .Rmd document, <strong>not</strong> the project
-root.</p>
+<p>The file paths you give in a .Rmd document, <em>e.g.</em> to load a
+.csv file, are relative to the .Rmd document, <strong>not</strong> the
+project root.</p>
 <p>As suggested in the Starting with Data episode, we highly recommend
 the use of the <code>here()</code> function to keep the file paths
 consistent within your project.</p>
@@ -539,8 +554,8 @@ shows the average household size grouped by <code>village</code> and
 calling it ‘interview-tbl’. Or, you can come up with something more
 creative (just remember to stick to the naming rules).</p>
 <p>It isn’t necessary to <strong>Knit</strong> your document every time
-you want to see the output. Instead you can run the code chunk with the
-green triangle in the top right corner of the the chunk, or with the
+you want to see the output. Instead, you can run the code chunk with the
+green triangle in the top right corner of the chunk, or with the
 keyboard shortcuts: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> on
 Windows and Linux, or <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>C</kbd> on
 Mac.</p>
@@ -961,7 +976,7 @@ For example, searching ‘10.1007/978-3-319-24277-4’ in ‘From DOI’ and
 inserting will provide the citation for <code>ggplot2</code> <span class="citation">[@wickham2016]</span>. This will also save the
 citation(s) in ‘references.bib’ in the current working directory. Visit
 the <a href="https://rstudio.github.io/visual-markdown-editing/" class="external-link">R
-Studio website</a> for more information. Tip: obtaining citation
+Studio site</a> for more information. Tip: obtaining citation
 information from relevant packages can be done by using
 <code>citation("package")</code>.</p>
 </div>
@@ -988,6 +1003,9 @@ Definitive Guide</a> (book by Rstudio team)</li>
 Reporting</a></li>
 <li><a href="https://www.rstudio.com/resources/webinars/introducing-bookdown/" class="external-link">Introducing
 Bookdown</a></li>
+<li><a href="files/rmarkdown-cheatsheet.pdf">RMarkdown
+cheatsheet</a></li>
+<li><a href="files/quarto-cheatsheet.pdf">Quarto cheatsheet</a></li>
 </ul><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
