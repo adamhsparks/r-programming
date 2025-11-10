@@ -59,6 +59,13 @@ Image credit: <a href="https://github.com/allisonhorst/stats-illustrations">Alli
 </figcaption>
 </figure>
 
+## A Note on Quarto
+
+Quarto is a next-generation version of R Markdown that extends its capabilities to support multiple programming languages (including R, Python, and Julia) and offers enhanced features for creating dynamic documents, presentations, websites, and books. Quarto builds upon the foundation of R Markdown while providing a more versatile and powerful framework for reproducible research and reporting.
+Unlike R Markdown, you must install Quarto separately from RStudio. Instructions for installing Quarto can be found at <https://quarto.org/docs/get-started/>.
+However, Quarto and R Markdown can coexist on the same system, and RStudio supports both formats and simply resaving or renaming a .Rmd to a .qmd file will convert it from R Markdown to Quarto.
+I won't spend time on Quarto here for this reason, but you can learn more about Quarto at <https://quarto.org/>, and the [cheat sheet](files/quarto-cheatsheet).
+
 ## Creating an R Markdown file
 
 To create a new R Markdown document in RStudio, click File -> New File -> R Markdown:
@@ -206,7 +213,7 @@ The syntax of a code chunk is:
 ````
 
 An R Markdown document knows that this text is not part of the report from the ```` ``` ```` that begins and ends the chunk. It also knows that the code
-inside of the chunk is R code from the `r` inside of the curly braces (`{}`).
+inside the chunk is R code from the `r` inside the curly braces (`{}`).
 After the `r` you can add a name for the code chunk.
 Naming a chunk is optional, but recommended. Each chunk name must be unique, and only contain alphanumeric characters and `-`.
 
@@ -228,7 +235,7 @@ interviews <- read_csv(here("data/SAFI_clean.csv"), na = "NULL")
 
 ## Important Note!
 
-The file paths you give in a .Rmd document, e.g. to load a .csv file, are relative to the .Rmd document, **not** the project root.
+The file paths you give in a .Rmd document, *e.g.* to load a .csv file, are relative to the .Rmd document, **not** the project root.
 
 As suggested in the Starting with Data episode, we highly recommend the use of the `here()` function to keep the file paths consistent within your project.
 
@@ -241,11 +248,11 @@ We can do this by creating a new code chunk and calling it 'interview-tbl'.
 Or, you can come up with something more creative (just remember to stick to the naming rules).
 
 It isn't necessary to **Knit** your document every time you want to see the output.
-Instead you can run the code chunk with the green triangle in the top right corner of the the chunk, or with the keyboard shortcuts:
+Instead, you can run the code chunk with the green triangle in the top right corner of the chunk, or with the keyboard shortcuts:
 <kbd>Ctrl</kbd>\+<kbd>Alt</kbd>\+<kbd>C</kbd> on Windows and Linux, or <kbd>Cmd</kbd>\+<kbd>Option</kbd>\+<kbd>C</kbd> on Mac.
 
-To make sure the table is formatted nicely in our output document, we will need to use the `kable()` function from the **knitr** package. The `kable()` function
-takes the output of your R code and knits it into a nice looking HTML table.
+To make sure the table is formatted nicely in our output document, we will need to use the `kable()` function from the **knitr** package.
+The `kable()` function takes the output of your R code and knits it into a nice looking HTML table.
 You can also specify different aspects of the table, e.g. the column names, a caption, etc.
 
 Run the code chunk to make sure you get the desired output.
@@ -277,6 +284,7 @@ Table: We can also add a caption.
 Many different R packages can be used to generate tables.
 Some of the more commonly used options are listed in the table below.
 
+
 | Name          | Creator(s)   | Description                              |
 |---------------|--------------|-------------------------------------------|
 | [condformat](https://condformat.sergioller.com/index.html) | [Oller Moreno (2022)](https://cran.rstudio.com/web/packages/condformat/index.html) | Apply and visualize conditional formatting to data frames in R. It renders a data frame with cells formatted according to criteria defined by rules, using a tidy evaluation syntax.  |
@@ -294,6 +302,7 @@ Some of the more commonly used options are listed in the table below.
 | [tangram](https://github.com/spgarbet/tangram) | [Garbett et al. (2023)](https://cran.r-project.org/web/packages/tangram/index.html) | Provides an extensible formula system to quickly and easily create production quality tables. The processing steps are a formula parser, statistical content generation from data defined by a formula, and rendering into a table.  |
 | [xtable](https://github.com/cran/xtable) | [Dahl et al. (2019)](https://cran.r-project.org/web/packages/xtable/index.html) | Coerce data to LaTeX and HTML tables. |
 | [ztable](https://github.com/cardiomoon/ztable) | [Moon (2021)](https://cran.r-project.org/web/packages/ztable/index.html) | Makes zebra-striped tables (tables with alternating row colors) in LaTeX and HTML formats easily from a data.frame, matrix, lm, aov, anova, glm, coxph, nls, fitdistr, mytable and cbind.mytable objects. |
+
 
 ## Customising chunk output
 
@@ -335,8 +344,8 @@ What happens if you use `eval = FALSE` and `echo = FALSE`? What is the differenc
 ## Solution to Exercise
 
 Create a chunk with `{r eval = FALSE, echo = FALSE}`, then create another chunk with `{r include = FALSE}` to compare.
-`eval = FALSE` and `echo = FALSE` will neither run the code in the chunk, nor show the code in the knitted document. The code chunk essentially
-doesn't exist in the knitted document as it was never run.
+`eval = FALSE` and `echo = FALSE` will neither run the code in the chunk, nor show the code in the knitted document.
+The code chunk essentially doesn't exist in the knitted document as it was never run.
 Whereas `include = FALSE` will run the code and store the output for later use.
 
 :::::::::::::::::::::::::
@@ -346,16 +355,16 @@ Whereas `include = FALSE` will run the code and store the output for later use.
 ## In-line R code
 
 Now we will use some in-line R code to present some descriptive statistics.
-To use in-line R-code, we use the same backticks that we used in the Markdown section, with an `r` to specify that we are generating R-code. The difference
-between in-line code and a code chunk is the number of backticks.
+To use in-line R-code, we use the same backticks that we used in the Markdown section, with an `r` to specify that we are generating R-code.
+The difference between in-line code and a code chunk is the number of backticks.
 In-line R code uses one backtick (`` `r` ``), whereas code chunks use three backticks
 (`` ```r``` ``).
 
 For example, today's date is ``` `r Sys.Date()` ```, will be rendered as: today's date is 2025-11-10.
 The code will display today's date in the output document (well, technically the date the document was last knitted).
 
-The best way to use in-line R code, is to minimise the amount of code you need to produce the in-line output by preparing the output in code chunks. Let's say
-we're interested in presenting the average household size in a village.
+The best way to use in-line R code, is to minimise the amount of code you need to produce the in-line output by preparing the output in code chunks.
+Let's say we're interested in presenting the average household size in a village.
 
 
 ``` r
@@ -379,8 +388,7 @@ becomes...
 The average household size in the village of Chirodzo is
 7.08.
 
-Because we are using in-line R code instead of the actual values, we have created a dynamic document that will automatically update if we make changes to the dataset
-and/or code chunks.
+Because we are using in-line R code instead of the actual values, we have created a dynamic document that will automatically update if we make changes to the dataset and/or code chunks.
 
 ## Plots
 
@@ -412,12 +420,12 @@ interviews_plotting <- interviews %>%
 
 ## Exercise
 
-Create a new code chunk for the plot, and copy the code from any of the plots we created in the previous episode to produce a plot in the chunk. I recommend
-one of the colourful plots.
+Create a new code chunk for the plot, and copy the code from any of the plots we created in the previous episode to produce a plot in the chunk.
+I recommend one of the colourful plots.
 
 If you are feeling adventurous, you can also create a new plot with the `interviews_plotting` data frame.
 
-:::::::::::::::  solution
+::::::::::::::: solution
 
 ## Solution to Exercise
 
@@ -430,7 +438,7 @@ interviews_plotting %>%
 
 <img src="fig/02-getting-started-rmarkdown-rendered-my-fancy-plot-1.png" style="display: block; margin: auto;" />
 
-:::::::::::::::::::::::::
+::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -475,7 +483,7 @@ output: word_document
 ---
 ```
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
 ## Note: Creating PDF documents
 
@@ -492,15 +500,12 @@ for more information.
 ## Note: Inserting citations into an R Markdown file
 
 It is possible to insert citations into an R Markdown file using the editor toolbar.
-The editor toolbar includes commonly seen formatting buttons generally seen in text editors (*e.g.*, bold and italic
-buttons).
+The editor toolbar includes commonly seen formatting buttons generally seen in text editors (*e.g.*, bold and italic buttons).
 The toolbar is accessible by using the settings dropdown menu (next to the 'Knit' dropdown menu) to select 'Use Visual Editor',
 also accessible through the shortcut 'Crtl+Shift+F4'.
 From here, clicking 'Insert' allows 'Citation' to be selected (shortcut: 'Crtl+Shift+F8').
-For example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and inserting will provide the citation for `ggplot2`
-[@wickham2016].
-This will also save the citation(s) in 'references.bib' in the current working directory. Visit the [R Studio
-website](https://rstudio.github.io/visual-markdown-editing/) for more information.
+For example, searching '10.1007/978-3-319-24277-4' in 'From DOI' and inserting will provide the citation for `ggplot2` [@wickham2016].
+This will also save the citation(s) in 'references.bib' in the current working directory. Visit the [R Studio site](https://rstudio.github.io/visual-markdown-editing/) for more information.
 Tip: obtaining citation information from relevant packages can be done by using `citation("package")`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -516,6 +521,8 @@ Tip: obtaining citation information from relevant packages can be done by using 
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) (book by Rstudio team)
 - [Reproducible Reporting](https://www.rstudio.com/resources/webinars/reproducible-reporting/)
 - [Introducing Bookdown](https://www.rstudio.com/resources/webinars/introducing-bookdown/)
+- [RMarkdown cheatsheet](files/rmarkdown-cheatsheet.pdf)
+- [Quarto cheatsheet](files/quarto-cheatsheet.pdf)
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
