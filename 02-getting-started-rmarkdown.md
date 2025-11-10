@@ -351,7 +351,7 @@ between in-line code and a code chunk is the number of backticks.
 In-line R code uses one backtick (`` `r` ``), whereas code chunks use three backticks
 (`` ```r``` ``).
 
-For example, today's date is ``` `r Sys.Date()` ```, will be rendered as: today's date is 2025-11-08.
+For example, today's date is ``` `r Sys.Date()` ```, will be rendered as: today's date is 2025-11-10.
 The code will display today's date in the output document (well, technically the date the document was last knitted).
 
 The best way to use in-line R code, is to minimise the amount of code you need to produce the in-line output by preparing the output in code chunks. Let's say
