@@ -508,21 +508,21 @@ they need to. If that happens, it can lead to unexpected
 results.</p></li>
 <li><p>Wherever possible, <a href="https://stackoverflow.com/a/21967272/4341322" class="external-link">keep track of
 <code>sessionInfo()</code> somewhere</a> in your project folder. Session
-information is invaluable because it captures all of the packages used
-in the current project. If a newer version of a package changes the way
-a function behaves, you can always go back and reinstall the version
-that worked (Note: At least on CRAN, all older versions of packages are
+information is invaluable because it captures all the packages used in
+the current project. If a newer version of a package changes the way a
+function behaves, you can always go back and reinstall the version that
+worked (Note: At least on CRAN, all older versions of packages are
 permanently archived).</p></li>
 <li><p>Collaborate. Grab a buddy and practice “code review”. Review is
 used for preparing experiments and manuscripts; why not use it for code
 as well? Our code is also a major scientific achievement and the product
 of lots of hard work! Reviews are built into <a href="https://github.com/skills/review-pull-requests" class="external-link">GitHub’s Pull
-request feature</a></p></li>
-</ol><div id="best-practice" class="callout challenge">
+request feature</a>.</p></li>
+</ol><div id="best-practice" class="callout discussion">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<span class="callout-header">Challenge</span>
+<span class="callout-header">Discussion</span>
 <div id="best-practice" class="callout-inner">
 <h3 class="callout-title">Best Practice</h3>
 <div class="callout-content">
@@ -530,81 +530,7 @@ request feature</a></p></li>
 <li>What are some specific ways we could restructure the code we worked
 on today to make it easier for a new user to read? Discuss with your
 neighbor.</li>
-<li>Make two new R scripts called <code>inflammation.R</code> and
-<code>inflammation_fxns.R</code>. Copy and paste code into each script
-so that <code>inflammation.R</code> “does stuff” and
-<code>inflammation_fxns.R</code> holds all of your functions.
-<strong>Hint</strong>: you will need to add <code>source</code> to one
-of the files.</li>
 </ol></div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">cat</span> inflammation.R</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="co"># This code runs the inflammation data analysis.</span></span>
-<span></span>
-<span><span class="kw">source</span><span class="op">(</span><span class="st">"inflammation_fxns.R"</span><span class="op">)</span></span>
-<span><span class="fu">analyze_all</span><span class="op">(</span><span class="st">"inflammation.*csv"</span><span class="op">)</span></span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb12">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">cat</span> inflammation_fxns.R</span></code></pre>
-</div>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code><span><span class="co"># This is code for functions used in our inflammation data analysis.</span></span>
-<span></span>
-<span><span class="va">analyze</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">filename</span>, <span class="va">output</span> <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># Plots the average, min, and max inflammation over time.</span></span>
-<span>  <span class="co"># Input:</span></span>
-<span>  <span class="co">#    filename: character string of a csv file</span></span>
-<span>  <span class="co">#    output: character string of pdf file for saving</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">is.null</span><span class="op">(</span><span class="va">output</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">pdf</span><span class="op">(</span><span class="va">output</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">read.csv</span><span class="op">(</span>file <span class="op">=</span> <span class="va">filename</span>, header <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span>  <span class="va">avg_day_inflammation</span> <span class="op">&lt;-</span> <span class="fu">apply</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span></span>
-<span>  <span class="fu">plot</span><span class="op">(</span><span class="va">avg_day_inflammation</span><span class="op">)</span></span>
-<span>  <span class="va">max_day_inflammation</span> <span class="op">&lt;-</span> <span class="fu">apply</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span>, <span class="va">max</span><span class="op">)</span></span>
-<span>  <span class="fu">plot</span><span class="op">(</span><span class="va">max_day_inflammation</span><span class="op">)</span></span>
-<span>  <span class="va">min_day_inflammation</span> <span class="op">&lt;-</span> <span class="fu">apply</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span>, <span class="va">min</span><span class="op">)</span></span>
-<span>  <span class="fu">plot</span><span class="op">(</span><span class="va">min_day_inflammation</span><span class="op">)</span></span>
-<span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu">is.null</span><span class="op">(</span><span class="va">output</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="fu">dev.off</span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">analyze_all</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">pattern</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="co"># Directory name containing the data</span></span>
-<span>  <span class="va">data_dir</span> <span class="op">&lt;-</span> <span class="st">"data"</span></span>
-<span>  <span class="co"># Directory name for results</span></span>
-<span>  <span class="va">results_dir</span> <span class="op">&lt;-</span> <span class="st">"results"</span></span>
-<span>  <span class="co"># Runs the function analyze for each file in the current working directory</span></span>
-<span>  <span class="co"># that contains the given pattern.</span></span>
-<span>  <span class="va">filenames</span> <span class="op">&lt;-</span> <span class="fu">list.files</span><span class="op">(</span>path <span class="op">=</span> <span class="va">data_dir</span>, pattern <span class="op">=</span> <span class="va">pattern</span><span class="op">)</span></span>
-<span>  <span class="kw">for</span> <span class="op">(</span><span class="va">f</span> <span class="kw">in</span> <span class="va">filenames</span><span class="op">)</span> <span class="op">{</span></span>
-<span>    <span class="va">pdf_name</span> <span class="op">&lt;-</span> <span class="fu">file.path</span><span class="op">(</span><span class="va">results_dir</span>, <span class="fu">sub</span><span class="op">(</span><span class="st">"csv"</span>, <span class="st">"pdf"</span>, <span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="fu">analyze</span><span class="op">(</span><span class="fu">file.path</span><span class="op">(</span><span class="va">data_dir</span>, <span class="va">f</span><span class="op">)</span>, output <span class="op">=</span> <span class="va">pdf_name</span><span class="op">)</span></span>
-<span>  <span class="op">}</span></span>
-<span><span class="op">}</span></span></code></pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div id="keypoints1" class="callout keypoints">
