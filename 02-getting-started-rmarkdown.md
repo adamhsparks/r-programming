@@ -67,6 +67,14 @@ Instructions for installing Quarto can be found at <https://quarto.org/docs/get-
 However, Quarto and R Markdown can coexist on the same system, and RStudio supports both formats and simply resaving or renaming a .Rmd to a .qmd file will convert it from an R Markdown document to a Quarto document.
 I won't spend time on Quarto here for this reason, but you can learn more about Quarto at <https://quarto.org/>.
 
+<figure>
+
+
+<figcaption>
+Image credit: <a href="https://allisonhorst.com/cetinkaya-rundel-lowndes-quarto-keynote">Artwork from "Hello, Quarto" keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by Allison Horst.</a>
+</figcaption>
+</figure>
+
 ## Creating an R Markdown file
 
 To create a new R Markdown document in RStudio, click File -> New File -> R Markdown:
