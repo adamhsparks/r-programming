@@ -34,7 +34,7 @@ You have to install R before you install RStudio.
 - Download R from the [CRAN website](https://cran.r-project.org/bin/windows/base/release.htm).
 - Run the `.exe` file that was just downloaded
 - Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-- Under *Installers* select **Windows Vista 10/11 - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
+- Under _Installers_ select **Windows Vista 10/11 - RSTUDIO-xxxx.yy.z-zzz.exe** (where x = year, y = month, and z represent version numbers)
 - Double click the file to install it
 - Once it's installed, open RStudio to make sure it works and you don't get any error messages.
 
@@ -49,7 +49,7 @@ You have to install R before you install RStudio.
 - Double click on the downloaded file to install R
 - It is also a good idea to install [XQuartz](https://www.xquartz.org/) (needed by some packages)
 - Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
-- Under *Installers* select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
+- Under _Installers_ select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
 - Double click the file to install RStudio
 - Once it's installed, open RStudio to make sure it works and you don't get any error messages
 
@@ -95,7 +95,7 @@ We will use the packages `tidyverse`, and `ratdat`.
 
 To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (macOS) to execute the command.
 
-``` r
+```r
 install.packages(
   c(
     "devtools",
@@ -113,7 +113,7 @@ R tries to download and install the packages on your machine.
 
 When the installation has finished, you can try to load the packages by pasting the following code into the console:
 
-``` r
+```r
 library(tidyverse)
 library(devtools)
 library(here)
