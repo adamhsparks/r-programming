@@ -326,7 +326,29 @@
         
         
 <section id="01-best-practices-R"><h2 class="section-heading"><a href="01-best-practices-R.html">Best Practices for Writing R Code</a></h2>
-<hr class="half-width"></section><section id="02-getting-started-rmarkdown"><h2 class="section-heading"><a href="02-getting-started-rmarkdown.html">Literate Programming - Getting started with R Markdown</a></h2>
+<hr class="half-width">
+<h3 id="01-best-practices-R-figure-1">Figure 1</h3>
+<p aria-hidden="true">Image 1 of 1: ‘Screenshot of the RStudio Global Options, with "Restore .RData into workspace at startup" unchecked, and "Save workspace to .RData on exit" set to "Never".’</p>
+<p><a href="https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#getting-set-up" class="external-link">Don’t
+save a session history</a> (the default option in R, when it asks if you
+want an <code>RData</code> file). Instead, start in a clean environment
+so that older objects don’t remain in your environment any longer than
+they need to. If that happens, it can lead to unexpected results. You
+can disable this in RStudio as well, as follows: Go to your menu bar,
+then click Tools → Global Options to open up the Options window. <img src="../fig/rstudio_settings.png" alt='Screenshot of the RStudio Global Options, with "Restore .RData into workspace at startup" unchecked, and "Save workspace to .RData on exit" set to "Never".' class="figure">
+Make sure your settings match those highlighted in yellow. We don’t want
+RStudio to store the current status of our R session and reload it the
+next time we start R. This might sound convenient, but for the sake of
+reproducibility, we want to start with a clean, empty R session every
+time we work. That means that we have to record everything we do into
+scripts, save any data we need into files, and store outputs like images
+as files. We want to get used to everything we generate in a single R
+session being <em>disposable</em>. We want our scripts to be able to
+regenerate things we need, other than “raw materials” like data.
+Instead, start in a clean environment so that older objects don’t remain
+in your environment any longer than they need to. If that happens, it
+can lead to unexpected results.</p>
+<hr></section><section id="02-getting-started-rmarkdown"><h2 class="section-heading"><a href="02-getting-started-rmarkdown.html">Literate Programming - Getting started with R Markdown</a></h2>
 <hr class="half-width">
 <h3 id="02-getting-started-rmarkdown-figure-1">Figure 1</h3>
 <p aria-hidden="true">Image 1 of 1: ‘R Markdown wizard monsters creating a R Markdown document from a recipe. Art by Allison Horst’</p>

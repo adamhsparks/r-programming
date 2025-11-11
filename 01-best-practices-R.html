@@ -507,8 +507,21 @@ delete objects. You can force R to tidy up its memory by using
 save a session history</a> (the default option in R, when it asks if you
 want an <code>RData</code> file). Instead, start in a clean environment
 so that older objects don’t remain in your environment any longer than
-they need to. If that happens, it can lead to unexpected
-results.</p></li>
+they need to. If that happens, it can lead to unexpected results. You
+can disable this in RStudio as well, as follows: Go to your menu bar,
+then click Tools → Global Options to open up the Options window. <img src="fig/rstudio_settings.png" alt='Screenshot of the RStudio Global Options, with "Restore .RData into workspace at startup" unchecked, and "Save workspace to .RData on exit" set to "Never".' class="figure">
+Make sure your settings match those highlighted in yellow. We don’t want
+RStudio to store the current status of our R session and reload it the
+next time we start R. This might sound convenient, but for the sake of
+reproducibility, we want to start with a clean, empty R session every
+time we work. That means that we have to record everything we do into
+scripts, save any data we need into files, and store outputs like images
+as files. We want to get used to everything we generate in a single R
+session being <em>disposable</em>. We want our scripts to be able to
+regenerate things we need, other than “raw materials” like data.
+Instead, start in a clean environment so that older objects don’t remain
+in your environment any longer than they need to. If that happens, it
+can lead to unexpected results.</p></li>
 <li><p>Wherever possible, <a href="https://stackoverflow.com/a/21967272/4341322" class="external-link">keep track of
 <code>sessionInfo()</code> somewhere</a> in your project folder. Session
 information is invaluable because it captures all the packages used in
