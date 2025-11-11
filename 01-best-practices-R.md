@@ -45,13 +45,13 @@ It can be frustrating to make it two-thirds of the way through a long-running sc
 
 ``` r
 library(ggplot2)
-library(reshape)
-library(vegan)
+library(dplyr)
+library(lubridate)
 ```
 
-Another way you can be explicit about the requirements of your code and improve it's reproducibility is to limit the "hard-coding" of the input and output files for your script.
+Another way you can be explicit about the requirements of your code and improve its reproducibility is to limit the "hard-coding" of the input and output files for your script.
 If your code will read in data from a file, define a variable early in your code that stores the path to that file.
-For example
+For example:
 
 
 ``` r
@@ -68,7 +68,7 @@ results <- some_other_function(input_file, sample_number)
 write.table(results, output_file)
 ```
 
-is preferable to
+is preferable to:
 
 
 ``` r
@@ -85,7 +85,7 @@ write.table("data/results.csv", output_file)
 It is also worth considering what the working directory is.
 If the working directory must change, it is best to do that at the beginning of the script.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
 ## Be careful when using `setwd()`
 
@@ -176,7 +176,7 @@ rm(list = ls()) # If you want to delete all the objects in the workspace and sta
 6. Don't save a session history (the default option in R, when it asks if you want an `RData` file).
 Instead, start in a clean environment so that older objects don't remain in your environment any longer than they need to.
 If that happens, it can lead to unexpected results.
-You can disable this in RStudio as well, as follows:
+*You can disable this in RStudio as well, as follows:*
 Go to your menu bar, then click Tools → Global Options to open up the Options window.
 ![](fig/rstudio_settings.png){alt='Screenshot of the RStudio Global Options, with "Restore .RData into workspace at startup" unchecked, and "Save workspace to .RData on exit" set to "Never".'}
 Make sure your settings match those highlighted in yellow.
