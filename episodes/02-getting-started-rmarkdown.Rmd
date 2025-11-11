@@ -1,5 +1,5 @@
 ---
-title: Getting started with R Markdown
+title: Literate Programming - Getting started with R Markdown
 teaching: 30
 exercises: 15
 output:

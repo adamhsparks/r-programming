@@ -1,6 +1,6 @@
 [![Build and Deploy Website](https://github.com/adamhsparks/2025-11-13-COMBINE-WA-morning/workflows/01%20Build%20and%20Deploy%20Site/badge.svg)](https://github.com/adamhsparks/2025-11-13-COMBINE-WA-morning/actions/workflows/sandpaper-main.yaml) [![Create a Slack Account with us](https://img.shields.io/badge/Create_Slack_Account-The_Carpentries-071159.svg)](https://slack-invite.carpentries.org/)
 
-# r-programming
+# Intermediate R - Literate Programming and Package Development
 
 [The Carpentries](https://carpentries.org/) teach foundational coding, and data science skills to researchers worldwide.
 This GitHub repository generates a modified version of the Software Carpentry lesson website "Introduction to R for non-programmers using inflammation data."
