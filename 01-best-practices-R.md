@@ -112,11 +112,12 @@ You might also like to see "[Ode to the here package](https://github.com/jennybc
 
 ### Identify and segregate distinct components in your code
 
-It's easy to annotate and mark your code using `#` or `#-`to set off sections of your code and to make finding specific parts of your code easier.
+It's easy to annotate and mark your code using `#` or `#-` to set off sections of your code and to make finding specific parts of your code easier.
 For example, it's often helpful when writing code to separate the function definitions.
 If you create only one or a few custom functions in your script, put them toward the top of your code.
 If you have written many functions, put them all in their own.
-R file and then` source` those files. `source` will define all of these functions so that your code can make use of them as needed.
+R file and then` source` those files.
+`source` will define all of these functions so that your code can make use of them as needed.
 
 
 ``` r
@@ -125,7 +126,8 @@ source("my_genius_fxns.R")
 
 ### Other ideas
 
-1. Use a consistent style within your code. For example, name all matrices something ending in `_mat`.
+1. Use a consistent style within your code.
+For example, name all matrices something ending in `_mat`.
 Consistency makes code easier to read and problems easier to spot.
 
 2. Keep your code in bite-sized chunks.
