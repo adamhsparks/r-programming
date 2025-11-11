@@ -93,7 +93,7 @@ During the course we will need a number of R packages.
 Packages contain useful R code written by other people.
 We will use the packages `tidyverse`, and `ratdat`.
 
-To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (MacOS) to execute the command.
+To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (macOS) to execute the command.
 
 ``` r
 install.packages(
