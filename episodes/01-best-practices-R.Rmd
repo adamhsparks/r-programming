@@ -48,6 +48,8 @@ It can be frustrating to make it two-thirds of the way through a long-running sc
 
 ```{r loadpkgs, eval=FALSE}
 library(ggplot2)
+library(dplyr)
+library(lubridate)
 ```
 
 Another way you can be explicit about the requirements of your code and improve its reproducibility is to limit the "hard-coding" of the input and output files for your script.
