@@ -1,5 +1,5 @@
 ---
-title: Literate Programming - Getting started with R Markdown
+title: Getting started with R Markdown
 teaching: 30
 exercises: 15
 output:
@@ -30,6 +30,7 @@ source: Rmd
 :::::::::::::::::::::::::::::::::::::::: questions
 
 - What is R Markdown?
+- What is Quarto?
 - How can I integrate my R code with text and plots?
 - How can I convert .Rmd files to .html?
 

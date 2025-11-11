@@ -203,8 +203,6 @@ Reviews are built into [GitHub's Pull request feature][gh-pr].
 ## Best Practice
 
 1. What other suggestions do you have for coding best practices?
-2. What are some specific ways we could restructure the code we worked on today to make it easier for a new user to read?
-Discuss with your neighbor.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
