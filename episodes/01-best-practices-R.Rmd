@@ -170,7 +170,7 @@ ls() # Lists all the objects in your current workspace
 rm(list = ls()) # If you want to delete all the objects in the workspace and start with a clean slate
 ```
 
-6. [Don't save a session history][dc-rstudio] (the default option in R, when it asks if you want an `RData` file).
+6. Don't save a session history (the default option in R, when it asks if you want an `RData` file).
 Instead, start in a clean environment so that older objects don't remain in your environment any longer than they need to.
 If that happens, it can lead to unexpected results.
 You can disable this in RStudio as well, as follows:
@@ -195,7 +195,7 @@ Review is used for preparing experiments and manuscripts; why not use it for cod
 Our code is also a major scientific achievement and the product of lots of hard work!
 Reviews are built into [GitHub's Pull request feature][gh-pr].
 
-:::::::::::::::::::::::::::::::::::::::  challenge
+::::::::::::::::::::::::::::::::::::::: challenge
 
 ## Best Practice
 
@@ -203,12 +203,11 @@ Reviews are built into [GitHub's Pull request feature][gh-pr].
 2. What are some specific ways we could restructure the code we worked on today to make it easier for a new user to read?
 Discuss with your neighbor.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 [swc-lesson-git]: https://swcarpentry.github.io/git-novice/
 [rstudio-git]: https://docs.posit.co/ide/user/ide/guide/tools/version-control.html
 [rstudio-project]: https://posit.co/resources/videos/programming-part-1-writing-code-in-rstudio/
-[dc-rstudio]: https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#getting-set-up
 [sessionInfo]: https://stackoverflow.com/a/21967272/4341322
 [gh-pr]: https://github.com/skills/review-pull-requests
 
