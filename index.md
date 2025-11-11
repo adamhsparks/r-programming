@@ -13,6 +13,4 @@ Learners need to understand the concepts of files and directories (including the
 I will use RStudio to teach this lesson, but it is not required.
 In fact, I put this lesson together using Neovim.
 
-```
-
-::::::::::::::::::::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::::::::::
