@@ -48,13 +48,11 @@ It can be frustrating to make it two-thirds of the way through a long-running sc
 
 ```{r loadpkgs, eval=FALSE}
 library(ggplot2)
-library(reshape)
-library(vegan)
 ```
 
-Another way you can be explicit about the requirements of your code and improve it's reproducibility is to limit the "hard-coding" of the input and output files for your script.
+Another way you can be explicit about the requirements of your code and improve its reproducibility is to limit the "hard-coding" of the input and output files for your script.
 If your code will read in data from a file, define a variable early in your code that stores the path to that file.
-For example
+For example:
 
 ```{r, eval=FALSE}
 input_file <- "data/data.csv"
@@ -70,7 +68,7 @@ results <- some_other_function(input_file, sample_number)
 write.table(results, output_file)
 ```
 
-is preferable to
+is preferable to:
 
 ```{r, eval=FALSE}
 # check
@@ -86,7 +84,7 @@ write.table("data/results.csv", output_file)
 It is also worth considering what the working directory is.
 If the working directory must change, it is best to do that at the beginning of the script.
 
-:::::::::::::::::::::::::::::::::::::::::  callout
+::::::::::::::::::::::::::::::::::::::::: callout
 
 ## Be careful when using `setwd()`
 
