@@ -105,6 +105,10 @@ Error in setwd("~/path/to/working/directory") : cannot change working directory
 
 It is best practice to have the user running the script begin in a consistent directory on their machine and then use relative file paths from that directory to access files (see below).
 
+Alternatively, consider using the `here` package to set paths relative to your project root, <https://here.r-lib.org/>.
+This works well with RStudio projects, but there are other ways to work with it outside of RStudio.
+You might also like to see "[Ode to the here package](https://github.com/jennybc/here_here)" by Jenny Bryan for why you might like to use it.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Identify and segregate distinct components in your code
