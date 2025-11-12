@@ -228,7 +228,6 @@ Therefore, R coders don't have to write these LaTeX-like files separately, but i
 [roxygen2]: https://cran.r-project.org/package=roxygen2/vignettes/rd.html
 
 For now, let's prepare a solid foundation of using [roxygen2's `#'` notation][roxygen2] for documenting functions.
-Please compare the following to the informal comments we used above and in the ["Analyzing Patient Data" episode]({{ page.root }}/02-starting-with-data/):
 
 ```{r average-roxygen}
 #' Find the Average of a Numeric Vector
