@@ -64,21 +64,6 @@ License: Abbreviation for an open source license
 
 The package name can only contain letters and numbers and has to start with a letter, but may also contain a full stop "." character.
 
-### .R files
-
-Functions don't all have to be in one file or each in separate files.
-How you organize them is up to you.
-Suggestion: organize in a logical manner so that you know which file holds which functions.
-
-::::::::::::::::::::: callout
-
-I name the file after the function and have one main function per file, sometimes multiples but only the exported function that users see is what the file is named.
-The rest of the functions in the file may be called by the main exported function and that function only.
-Sometimes I have large unexported functions that have their own file as well.
-I also organise shared helper functions, remember, don't repeat yourself, that are not exported (visible to the end user) in an "internal_functions.R" or "utilities.R" file.
-
-:::::::::::::::::::::::::::::
-
 ### Making your first R package
 
 In this lesson, we will start building a "[personal package](https://hilaryparker.com/2013/04/03/personal-r-packages/)".
@@ -112,18 +97,28 @@ Type `cen` and/or `resc`, then <kbd>Tab</kbd> and test some examples like `cente
 
 An R package requires four components:
 
--   a `DESCRIPTION` file with metadata about the package
--   an `R` directory with the code
--   a `man` directory with documentation (we will create this automatically)
--   a `NAMESPACE` file listing user-level ("exported") functions in the package (we will also create this automatically)
+-   a `DESCRIPTION` file with metadata about the package,
+-   an `R` directory with the code,
+-   a `man` directory with documentation (we will create this automatically),
+-   a `NAMESPACE` file listing user-level ("exported") functions in the package (we will also create this automatically).
 
 *There are other optional components. [Read the "R packages" book](https://r-pkgs.had.co.nz/description.html) and/or the original ["Writing R Extensions" documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure) for much more information.*
 
 ### .R files
 
+.R files go in the `R/` directory.
 Functions don't all have to be in one file or each in separate files.
 How you organize them is up to you.
-Suggestion: organize in a logical manner so that you know which file holds which functions.
+Suggestion: organise in a logical manner so that you know which file holds which functions.
+
+::::::::::::::::::::: callout
+
+I name the file after the function and have one main function per file, sometimes multiples but only the exported function that users see is what the file is named.
+The rest of the functions in the file may be called by the main exported function and that function only.
+Sometimes I have large unexported functions that have their own file as well.
+I also organise shared helper functions, remember, don't repeat yourself, that are not exported (visible to the end user) in an "internal_functions.R" or "utilities.R" file.
+
+:::::::::::::::::::::::::::::
 
 ### `DESCRIPTION` file
 
@@ -175,13 +170,78 @@ The date is added in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: 
 ORCiDs can only be added to machine-readable `Authors@R` fields that use the `person(…)` function.
 `use_description()` created this already, so that you can add your ORCiD as a `comment = c(ORCID = "…")`.
 
-In summary: Enabling `citation()` to convert `DESCRIPTION` into a rich BibTeX snippet is a side-effect of FAIR metadata for your R package.
+In summary: Enabling `citation()` to convert `DESCRIPTION` into a rich BibTeX snippet is a side effect of FAIR metadata for your R package.
 
 :::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-### Converting function documentation to help pages
+### Documenting functions
+
+A common way to put documentation in software is to add "informal" comments like this:
+
+```{r center-commented, eval=FALSE}
+center <- function(data, desired) {
+  # return a new vector containing the original data centered around the
+  # desired value.
+  # Example: center(c(1, 2, 3), 0) should return [1] -1  0  1
+  new_data <- (data - mean(data)) + desired
+  return(new_data)
+}
+```
+
+This is a good practice to begin with. Keeping the documentation exactly next to
+the code helps keeping the former in sync with code changes.
+However, when using `?…` or `help(…)` we do not see such informal comments.
+
+How can we create conveniently readable help pages for our own functions? By
+using the [roxygen2] package!
+
+```{r, eval=FALSE}
+install.packages("roxygen2")
+library(roxygen2)
+```
+
+It can convert "formal" documentation comments (lines starting with `#'`) into the standard R format for help pages.
+
+:::::::::::::::::::::::::::: callout
+
+#### Technical details of R's help page format
+
+Help pages are rendered not directly from the roxygen comments, but from `.Rd` files that use a markup language similar to [LaTeX].
+[roxygen2] generates those `.Rd` files from the formal function documentation comments.
+Therefore, R coders don't have to write these LaTeX-like files separately, but instead document their functions alongside the code.
+
+::::::::::::::::::::::::::::::::::::
+
+[LaTeX]: https://www.latex-project.org/
+[roxygen2]: https://cran.r-project.org/package=roxygen2/vignettes/rd.html
+
+For now, let's prepare a solid foundation of using [roxygen2's `#'` notation][roxygen2] for documenting functions.
+Please compare the following to the informal comments we used above and in the ["Analyzing Patient Data" episode]({{ page.root }}/02-starting-with-data/):
+
+```{r center-roxygen}
+#' Centering Data
+#'
+#' @param data The numeric vector to be centered
+#' @param desired The numeric value around which the data will be centered
+#'
+#' @return A new vector containing the original data centered around the desired value.
+#' @export
+#' @examples
+#'   center(c(1, 2, 3), 0)  # should return [1] -1  0  1
+center <- function(data, desired) {
+  new_data <- (data - mean(data)) + desired
+  return(new_data)
+}
+```
+
+Unsurprisingly, the first line should be a short, descriptive title.
+Additional text paragraphs are possible after leaving one line blank with only a `#'`.
+The descriptive tags (preceded by an `@`) hold the most important details.
+Each `@param` documents an input parameter, while `@return` explains the function's output.
+The more comprehensible a description of its in- and output data (types), the easier a function can be integrated into larger analysis pipelines.
+`@export` means that the function is presented to users, after we have [packaged it in a later episode]({{ page.root }}/reference/#packages).
 
 Remember that we documented our functions with roxygen comments?
 Let's try and look it up:
@@ -203,7 +263,7 @@ Hint: Look at the commit diff.
 ### Solution
 
 We did not yet tell R to actually generate the `man`ual files and folders in our package.
-This needs to be done with `roxygen2::roxygenise()`.
+This needs to be done with `roxygen2::roxygenise()` or `devtools::document()`.
 
 :::::::::::::::::::::::::::::::
 
@@ -328,12 +388,13 @@ kelvin_to_fahrenheit <- function(temp_K) {
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
 -   A package is the basic unit of reusability in R.
--   Every package must have a DESCRIPTION file and an R directory containing code. These are created by us.
--   A NAMESPACE file is needed as well, and a man directory containing documentation, but both can be autogenerated.
+-   Every package must have a DESCRIPTION file and an R directory containing code.
+    These are created by us.
+-   A NAMESPACE file is needed as well, and a man directory containing documentation, but both can be autogenerated using `roxygen2`.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 This was our basic introduction to packaging up R functions.
 To go on from here, remember to functionalise R code that you use repeatedly and incorporate it into your personal package.
 
-This lesson was a adapted from <https://github.com/TIBHannover/FAIR-R> under the CC-by-4.0 Licence.
+This lesson was adapted from <https://github.com/TIBHannover/FAIR-R> under the CC-by-4.0 Licence.
