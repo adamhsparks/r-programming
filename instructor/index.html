@@ -382,7 +382,7 @@ before you install RStudio.</p>
   For Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/windows/base/release.htm" class="external-link">CRAN
 website</a>.</li>
@@ -408,7 +408,7 @@ don’t get any error messages.</li>
   For MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul><li>Download R from the <a href="https://cran.r-project.org/bin/macosx/" class="external-link">CRAN website</a>
 </li>
@@ -423,7 +423,7 @@ download page</a>
 RSTUDIO-xxxx.yy.z-zzz.dmg</strong> (where x = year, y = month, and z
 represent version numbers)</li>
 <li>Double click the file to install RStudio</li>
-<li>Once it’s installed, open RStudio to make sure it works and you
+<li>Once it’s installed, open RStudio to make sure it works and that you
 don’t get any error messages</li>
 </ul></div>
 </div>
@@ -437,7 +437,7 @@ don’t get any error messages</li>
   For Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <ul><li>Click on your distribution in the <a href="https://cran.r-project.org/bin/linux/" class="external-link">Linux folder of the CRAN
 website</a>. Linux Mint users should follow instructions for
@@ -474,11 +474,18 @@ do I uninstall R?</a>
 <li>After installing a new version of R, you will have to reinstall all
 your packages with the new version. For Windows, there is a package
 called <code>installr</code> that can help you with upgrading your R
-version and migrate your package library. To update RStudio to the
-latest version, open RStudio and click on
+version and migrate your package library.</li>
+<li>
+<code>rig</code> will allow you to install and switch easily between
+R versions using Windows, macOS and Linux, and keep your R installation
+updated. See the <a href="https://github.com/r-lib/rig" class="external-link">documentation</a> for
+<code>rig</code> for more details.</li>
+<li>To update RStudio to the latest version, open RStudio and click on
 <code>Help &gt; Check for Updates</code>. If a new version is available
 follow the instruction on screen. By default, RStudio will also
 automatically notify you of new versions every once in a while.</li>
+<li>You can also use <code>rig</code> to manage your R installation and
+versions.</li>
 </ul><div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -504,7 +511,8 @@ regularly use is a good practice.</p>
 <h3 id="install-required-r-packages">Install required R packages<a class="anchor" aria-label="anchor" href="#install-required-r-packages"></a></h3>
 <p>During the course we will need a number of R packages. Packages
 contain useful R code written by other people. We will use the packages
-<code>tidyverse</code>, and <code>ratdat</code>.</p>
+<code>tidyverse</code>, <code>devtools</code>, <code>here</code>,
+<code>roxygen2</code>, <code>knitr</code> and <code>desc</code>.</p>
 <p>To try to install these packages, open RStudio and copy and paste the
 following command into the console window (look for a blinking cursor on
 the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or

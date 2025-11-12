@@ -359,13 +359,31 @@ Author: Name and email of package creator
 Maintainer: Name and email of package maintainer (who to contact with issues)
 License: Abbreviation for an open source license</code></pre>
 <p>The package name can only contain letters and numbers and has to
-start with a letter.</p>
+start with a letter, but may also contain a full stop “.” character.</p>
 </div>
 <div class="section level3">
 <h3 id="r-files">.R files<a class="anchor" aria-label="anchor" href="#r-files"></a></h3>
 <p>Functions don’t all have to be in one file or each in separate files.
 How you organize them is up to you. Suggestion: organize in a logical
 manner so that you know which file holds which functions.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>I name the file after the function and have one main function per
+file, sometimes multiples but only the exported function that users see
+is what the file is named. The rest of the functions in the file may be
+called by the main exported function and that function only. Sometimes I
+have large unexported functions that have their own file as well. I also
+organise shared helper functions, remember, don’t repeat yourself, that
+are not exported (visible to the end user) in an “internal_functions.R”
+or “utilities.R” file.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="making-your-first-r-package">Making your first R package<a class="anchor" aria-label="anchor" href="#making-your-first-r-package"></a></h3>
@@ -374,7 +392,7 @@ package</a>”. This is meant to collect any kind of R code that is useful
 to <em>you</em>. As you continue to evolve it after this lesson, you may
 move code that belongs to the same publication, topic or a distinct
 project, into their own packages. Here we begin to realise the benefit
-of already documenting the functions formally earlier: We can publish
+of already documenting the functions formally earlier: we can publish
 more quickly, because we didn’t leave much unfinished clean-up
 business.</p>
 <p>To start working on this personal package, please open RStudio’s
