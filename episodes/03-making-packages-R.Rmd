@@ -50,20 +50,6 @@ package_name/
 *There are other optional components.
 [rOpenSci community](https://devguide.ropensci.org/building.html) has written a science-focused guidebook for package development, while [the "R packages" book](https://r-pkgs.org/description.html) contains all the fundamental information.*
 
-### DESCRIPTION file
-
-``` source
-Package: package_name
-Title: Brief package description
-Description: Longer package description
-Version: Version number(major.minor.patch)
-Author: Name and email of package creator
-Maintainer: Name and email of package maintainer (who to contact with issues)
-License: Abbreviation for an open source license
-```
-
-The package name can only contain letters and numbers and has to start with a letter, but may also contain a full stop "." character.
-
 ### Making your first R package
 
 In this lesson, we will start building a "[personal package](https://hilaryparker.com/2013/04/03/personal-r-packages/)".
@@ -120,10 +106,21 @@ I also organise shared helper functions, remember, don't repeat yourself, that a
 
 :::::::::::::::::::::::::::::
 
-### `DESCRIPTION` file
+In RStudio, click on `File > New File > R Script` to create a new R script.
+In the script, save this function.
 
-We used RStudio's import process to include the `.R` files we already had.
-However, FAIRer (because richer in metadata) `DESCRIPTION` files can be generated with `usethis::use_description()`:
+```r
+average <- function(x) {
+  sum(x) / length(x)
+}
+```
+
+Save the file in the `R/` directory with a descriptive name.
+
+### `DESCRIPTION` File
+
+Next we need to create a `DESCRIUPTION` file.
+The `DESCRIPTION` files can be generated with `usethis::use_description()`:
 
 ```
 Package: PackageName
@@ -139,12 +136,27 @@ Description: What the package does (one paragraph).
     Use four spaces when indenting paragraphs within the Description.
 License: What license it uses
 Encoding: UTF-8
-LazyData: true
 ```
 
-The package name can only contain letters and numbers and has to start with a letter.
+Fill in the necessary details here about the package name, noting that package name can only contain letters, numbers or a full stop, ".", and must start with a letter.
+Add your name and a description of what the package does.
+If it starts with, "An R package to...", CRAN will reject it saying that it's obvious that it's an R package, so think carefully about how you describe your package.
+Choose your license; if you are unsure, use `MIT + file LICENSE` which is a permissive open source license, but `GPL3` or the like is also good.
+Using `usethis::use_mit_license("Your Name")` will create a `LICENSE` file for you for the MIT license and update the `DESCRIPTION` file accordingly.
+
+```r
+usethis::use_mit_license("Your Name")
+```
+
+Don't use a Creative Commons license for software, keep that for documentation, manuscripts and other writing documents.
+
+:::::::::::::::::::::::::::::::::::::: callout
+
+#### Keeping Your `DESCRIPTION` File Neat and Tidy
 
 Using `desc::desc_normalise()` will format the `DESCRIPTION` file nicely.
+
+::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
@@ -161,7 +173,7 @@ Find out how to add this information, and which additional changes you can make 
 ## Hint
 
 One useful resource to find the answer to such technical details is GitHub.
-Search for `org:ROpenSci filename:DESCRIPTION` (this restricts your search) to a community of practice and its R packages) plus [`2019`](https://github.com/search?q=org%3AROpenSci+filename%3ADESCRIPTION+2019) or [`orcid`](https://github.com/search?q=org%3AROpenSci+filename%3ADESCRIPTION+orcid) for example.
+Search for `org:ROpenSci filename:DESCRIPTION` (this restricts your search to a community of practice and its R packages) plus [`2019`](https://github.com/search?q=org%3AROpenSci+filename%3ADESCRIPTION+2019) or [`orcid`](https://github.com/search?q=org%3AROpenSci+filename%3ADESCRIPTION+orcid) for example.
 
 :::::::::::::::::::::: solution
 
@@ -180,22 +192,20 @@ In summary: Enabling `citation()` to convert `DESCRIPTION` into a rich BibTeX sn
 
 A common way to put documentation in software is to add "informal" comments like this:
 
-```{r center-commented, eval=FALSE}
-center <- function(data, desired) {
-  # return a new vector containing the original data centered around the
-  # desired value.
-  # Example: center(c(1, 2, 3), 0) should return [1] -1  0  1
-  new_data <- (data - mean(data)) + desired
-  return(new_data)
+```r
+average <- function(x) {
+  # Take values in `x` and sum them for the total value of `x`.
+  # Then divide by the number of values in `x`.
+  sum(x) / length(x)
 }
 ```
 
-This is a good practice to begin with. Keeping the documentation exactly next to
-the code helps keeping the former in sync with code changes.
+This is a good practice to begin with.
+Keeping the documentation exactly next to the code helps keeping the former in sync with code changes.
 However, when using `?…` or `help(…)` we do not see such informal comments.
 
-How can we create conveniently readable help pages for our own functions? By
-using the [roxygen2] package!
+How can we create conveniently readable help pages for our own functions?
+By using the [roxygen2] package!
 
 ```{r, eval=FALSE}
 install.packages("roxygen2")
@@ -220,43 +230,41 @@ Therefore, R coders don't have to write these LaTeX-like files separately, but i
 For now, let's prepare a solid foundation of using [roxygen2's `#'` notation][roxygen2] for documenting functions.
 Please compare the following to the informal comments we used above and in the ["Analyzing Patient Data" episode]({{ page.root }}/02-starting-with-data/):
 
-```{r center-roxygen}
-#' Centering Data
+```{r average-roxygen}
+#' Find the Average of a Numeric Vector
 #'
-#' @param data The numeric vector to be centered
-#' @param desired The numeric value around which the data will be centered
+#' @param x The numeric vector to be averaged.
 #'
-#' @return A new vector containing the original data centered around the desired value.
+#' @returns A numeric value representing the average of the input vector.
 #' @export
 #' @examples
-#'   center(c(1, 2, 3), 0)  # should return [1] -1  0  1
-center <- function(data, desired) {
-  new_data <- (data - mean(data)) + desired
-  return(new_data)
+#'   average(c(1, 2, 3)) # will be 2
+average <- function(x) {
+  sum(x) / length(x)
 }
 ```
 
 Unsurprisingly, the first line should be a short, descriptive title.
 Additional text paragraphs are possible after leaving one line blank with only a `#'`.
 The descriptive tags (preceded by an `@`) hold the most important details.
-Each `@param` documents an input parameter, while `@return` explains the function's output.
+Each `@param` documents an input parameter, while `@returns` explains the function's output.
 The more comprehensible a description of its in- and output data (types), the easier a function can be integrated into larger analysis pipelines.
-`@export` means that the function is presented to users, after we have [packaged it in a later episode]({{ page.root }}/reference/#packages).
+`@export` means that the function is presented to users.
 
 Remember that we documented our functions with roxygen comments?
 Let's try and look it up:
 
 ```{r eval=FALSE}
-?center
-help(rescale)
+?average
+help(average)
 ```
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
 ## Why `No documentation for '…' in specified packages and libraries`? We did write it!
 
-Why do you think the documentation of our package can not be found.
-Hint: Look at the commit diff.
+Why do you think the documentation of our package can not be found?
+Hint: If you're using Git, look at the commit diff.
 
 :::::::::::::::::::::: solution
 
@@ -270,6 +278,7 @@ This needs to be done with `roxygen2::roxygenise()` or `devtools::document()`.
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
 After `Install and Restart`-ing again, looking up the documentation should work.
+A shortcut here is to save your .R file and run `devtools::document` followed by `devtools::load_all()`, which will also load your package in your current session and make the documentation available to you as you work.
 
 What exactly does `roxygen2` do?
 It reads lines that begin with `#'` as the function documentation for your package.
@@ -283,7 +292,7 @@ It belongs to the package skeleton, and was set up by RStudio with an `exportPat
 Any file name in `R/` that matches it is automatically exported, meaning offered to users of your package in the console's tab-completion.
 
 If you want to publish your package, but keep some functions hidden (maybe because they only do auxiliary tasks), you can delete this default file, remove the `@export` tag from the auxiliary functions, and rerun `roxygenise()`.
-It's still a good idea to retain their other roxygen tags (esp. `@param` & `@return`).
+It's still a good idea to retain their other roxygen tags (esp. `@param` & `@return`) but use `@noRD` in place of `@export` and include an `@keywords Internal` to signal to `roxygen` that these files are not to be shown to users.
 
 Learn more about this from the ["R packages" book](https://r-pkgs.had.co.nz/namespace.html).
 
@@ -298,7 +307,7 @@ In case you learned about Git already, also view the `.Rd` files in RStudio's `G
 
 ## How would you word the commit message?
 
-"Add docu" is a bit moot, because that's obvious from the filenames and contents.
+"Add average" is a bit moot, because that's obvious from the filenames and contents.
 Which other messages would better explain the "Why?", or that would be more useful when browsing the commit history later
 
 :::::::::::::::::::::::::: hint
@@ -311,26 +320,24 @@ Which other messages would better explain the "Why?", or that would be more usef
 
 :::::::::::::::::::::::::::::::::::::::::::::::::
 
-Also, after `roxygenise()`-ing the function docu, you can tell R to run the examples.
+Also, after `roxygenise()`-ing the function average, you can tell R to run the examples.
 Using R's `example()` function on another function's name saves you from scrolling down its help page, copying the example code and pasting it into the console.
 
-```{r center-rescale-packaged-test-call, eval=FALSE}
-example(center)
-example(rescale)
+```{r average-example, eval=TRUE}
+example(average)
 ```
-
-
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
 ## Creating a Package for Distribution
 
-1.  Create some new functions for your tempConvert package to convert from Celsius to Fahrenheit or from Kelvin to Celsius or Fahrenheit.
-2.  Create a package for our `analyze` function so that it will be easy to load when more data arrives.
+Create a new package from scratch that converts temperature between Celsius, Fahrenheit and Kelvin.
+Alternatively, use your own functions that you may have written that you find useful and create a package with them for you to use.
+I have an example of my own here, [misc.debris](https://adamhsparks.codeberg.page/misc.debris/).
 
 ::::::::::::::: solution
 
-## Solution
+## Solution for Temperature Conversion Package Functions
 
 ``` r
 #' Converts Kelvin to Celsius
@@ -379,6 +386,23 @@ kelvin_to_fahrenheit <- function(temp_K) {
   temp_F <- celsius_to_fahrenheit(temp_C)
   temp_F
 }
+```
+
+## Solution for Temperature Conversion Package DESCRIPTION File
+
+```
+Package: tempConvertR
+Type: Package
+Version: 0.1.0
+Title: Automates temperature conversions between Celsius, Fahrenheit and Kelvin
+Authors@R:
+    person(given = "First",
+           family = "Last",
+           role = c("aut", "cre"),
+           email = "first.last@example.com")
+Description: Takes temperature values and converts from one scale to another.
+License: MIT + file LICENSE
+Encoding: UTF-8
 ```
 
 :::::::::::::::::::::::::
