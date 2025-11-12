@@ -51,7 +51,7 @@ You have to install R before you install RStudio.
 - Go to the [RStudio download page](https://www.rstudio.com/products/rstudio/download/#download)
 - Under _Installers_ select **Mac OS 13+ - RSTUDIO-xxxx.yy.z-zzz.dmg** (where x = year, y = month, and z represent version numbers)
 - Double click the file to install RStudio
-- Once it's installed, open RStudio to make sure it works and you don't get any error messages
+- Once it's installed, open RStudio to make sure it works and that you don't get any error messages
 
 :::::::::::::::
 
