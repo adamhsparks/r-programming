@@ -139,7 +139,7 @@ Since we have already defined our title in the YAML header, we will use a sectio
 ## Introduction
 ```
 
-You can make things **bold** by surrounding the word with double asterisks, `**bold**`, or double underscores, `__bold__`; and *italicize* using single
+You can make things **bold** by surrounding the word with double asterisks, `**bold**`, or double underscores, `__bold__`; and *italicise* using single
 asterisks, `*italics*`, or single underscores, `_italics_`.
 
 You can also combine **bold** and *italics* to write something ***really*** important with triple-asterisks, `***really***`, or underscores, `___really___`;
