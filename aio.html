@@ -1264,7 +1264,7 @@ the output.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Create a chunk with <code>{r eval = FALSE, echo = FALSE}</code>, then
 create another chunk with <code>{r include = FALSE}</code> to compare.
@@ -1365,7 +1365,7 @@ the <code>interviews_plotting</code> data frame.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Solution to Exercise </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1580,31 +1580,6 @@ License: Abbreviation for an open source license</code></pre>
 start with a letter, but may also contain a full stop “.” character.</p>
 </div>
 <div class="section level3">
-<h3 id="r-files">.R files<a class="anchor" aria-label="anchor" href="#r-files"></a>
-</h3>
-<p>Functions don’t all have to be in one file or each in separate files.
-How you organize them is up to you. Suggestion: organize in a logical
-manner so that you know which file holds which functions.</p>
-<div id="callout1" class="callout">
-<div class="callout-square">
-<i class="callout-icon" data-feather="bell"></i>
-</div>
-<span class="callout-header">Callout</span>
-<div class="callout-inner">
-<div class="callout-content">
-<p>I name the file after the function and have one main function per
-file, sometimes multiples but only the exported function that users see
-is what the file is named. The rest of the functions in the file may be
-called by the main exported function and that function only. Sometimes I
-have large unexported functions that have their own file as well. I also
-organise shared helper functions, remember, don’t repeat yourself, that
-are not exported (visible to the end user) in an “internal_functions.R”
-or “utilities.R” file.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="section level3">
 <h3 id="making-your-first-r-package">Making your first R package<a class="anchor" aria-label="anchor" href="#making-your-first-r-package"></a>
 </h3>
 <p>In this lesson, we will start building a “<a href="https://hilaryparker.com/2013/04/03/personal-r-packages/" class="external-link">personal
@@ -1620,9 +1595,6 @@ business.</p>
 <code>New Project… &gt; New Directory… &gt; R Package</code>. Give it a
 unique, but useful name. Your own will work just fine. Bonus points for
 squeezing in an <code>R</code> ;-)</p>
-<p>Also add the <code>source files</code> we created earlier (the first
-versions of <code>center.R</code> and <code>rescale.R</code>), so that
-we have some example code right away.</p>
 <figure><img src="fig/08-RStudio-new-package.png" alt="New package in RStudio" width="500" class="figure mx-auto d-block"></figure><p>In case you have learned about version control already, it would be
 good practice to <code>create a git repository</code> now and
 <code>git commit</code> each step of building this package.</p>
@@ -1648,22 +1620,42 @@ just like for any other package. Type <code>cen</code> and/or
 <hr class="half-width">
 <p>An R package requires four components:</p>
 <ul>
-<li>a <code>DESCRIPTION</code> file with metadata about the package</li>
-<li>an <code>R</code> directory with the code</li>
+<li>a <code>DESCRIPTION</code> file with metadata about the
+package,</li>
+<li>an <code>R</code> directory with the code,</li>
 <li>a <code>man</code> directory with documentation (we will create this
-automatically)</li>
+automatically),</li>
 <li>a <code>NAMESPACE</code> file listing user-level (“exported”)
-functions in the package (we will also create this automatically)</li>
+functions in the package (we will also create this automatically).</li>
 </ul>
 <p><em>There are other optional components. <a href="https://r-pkgs.had.co.nz/description.html" class="external-link">Read the “R packages”
 book</a> and/or the original <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html#Package-structure" class="external-link">“Writing
 R Extensions” documentation</a> for much more information.</em></p>
 <div class="section level3">
-<h3 id="r-files-1">.R files<a class="anchor" aria-label="anchor" href="#r-files-1"></a>
+<h3 id="r-files">.R files<a class="anchor" aria-label="anchor" href="#r-files"></a>
 </h3>
-<p>Functions don’t all have to be in one file or each in separate files.
-How you organize them is up to you. Suggestion: organize in a logical
-manner so that you know which file holds which functions.</p>
+<p>.R files go in the <code>R/</code> directory. Functions don’t all
+have to be in one file or each in separate files. How you organize them
+is up to you. Suggestion: organise in a logical manner so that you know
+which file holds which functions.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>I name the file after the function and have one main function per
+file, sometimes multiples but only the exported function that users see
+is what the file is named. The rest of the functions in the file may be
+called by the main exported function and that function only. Sometimes I
+have large unexported functions that have their own file as well. I also
+organise shared helper functions, remember, don’t repeat yourself, that
+are not exported (visible to the end user) in an “internal_functions.R”
+or “utilities.R” file.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section level3">
 <h3 id="description-file-1">
@@ -1733,7 +1725,7 @@ fields that use the <code>person(…)</code> function.
 <code>use_description()</code> created this already, so that you can add
 your ORCiD as a <code>comment = c(ORCID = "…")</code>.</p>
 <p>In summary: Enabling <code>citation()</code> to convert
-<code>DESCRIPTION</code> into a rich BibTeX snippet is a side-effect of
+<code>DESCRIPTION</code> into a rich BibTeX snippet is a side effect of
 FAIR metadata for your R package.</p>
 </div>
 </div>
@@ -1741,11 +1733,91 @@ FAIR metadata for your R package.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="converting-function-documentation-to-help-pages">Converting function documentation to help pages<a class="anchor" aria-label="anchor" href="#converting-function-documentation-to-help-pages"></a>
+<h3 id="documenting-functions">Documenting functions<a class="anchor" aria-label="anchor" href="#documenting-functions"></a>
 </h3>
+<p>A common way to put documentation in software is to add “informal”
+comments like this:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">center</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">desired</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="co"># return a new vector containing the original data centered around the</span></span>
+<span>  <span class="co"># desired value.</span></span>
+<span>  <span class="co"># Example: center(c(1, 2, 3), 0) should return [1] -1  0  1</span></span>
+<span>  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">data</span> <span class="op">-</span> <span class="fu">mean</span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">desired</span></span>
+<span>  <span class="kw">return</span><span class="op">(</span><span class="va">new_data</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>This is a good practice to begin with. Keeping the documentation
+exactly next to the code helps keeping the former in sync with code
+changes. However, when using <code>?…</code> or <code>help(…)</code> we
+do not see such informal comments.</p>
+<p>How can we create conveniently readable help pages for our own
+functions? By using the <a href="https://cran.r-project.org/package=roxygen2/vignettes/rd.html" class="external-link">roxygen2</a>
+package!</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">install.packages</span><span class="op">(</span><span class="st">"roxygen2"</span><span class="op">)</span></span>
+<span><span class="kw">library</span><span class="op">(</span><span class="va">roxygen2</span><span class="op">)</span></span></code></pre>
+</div>
+<p>It can convert “formal” documentation comments (lines starting with
+<code>#'</code>) into the standard R format for help pages.</p>
+<div id="technical-details-of-rs-help-page-format" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="technical-details-of-rs-help-page-format" class="callout-inner">
+<h3 class="callout-title">Technical details of R’s help page format</h3>
+<div class="callout-content">
+<p>Help pages are rendered not directly from the roxygen comments, but
+from <code>.Rd</code> files that use a markup language similar to <a href="https://www.latex-project.org/" class="external-link">LaTeX</a>. <a href="https://cran.r-project.org/package=roxygen2/vignettes/rd.html" class="external-link">roxygen2</a>
+generates those <code>.Rd</code> files from the formal function
+documentation comments. Therefore, R coders don’t have to write these
+LaTeX-like files separately, but instead document their functions
+alongside the code.</p>
+</div>
+</div>
+</div>
+<p>For now, let’s prepare a solid foundation of using <a href="https://cran.r-project.org/package=roxygen2/vignettes/rd.html" class="external-link">roxygen2’s
+<code>#'</code> notation</a> for documenting functions. Please compare
+the following to the informal comments we used above and in the <a href="%7B%7B%20page.root%20%7D%7D/02-starting-with-data/">“Analyzing
+Patient Data” episode</a>:</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#' Centering Data</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @param data The numeric vector to be centered</span></span>
+<span><span class="co">#' @param desired The numeric value around which the data will be centered</span></span>
+<span><span class="co">#'</span></span>
+<span><span class="co">#' @return A new vector containing the original data centered around the desired value.</span></span>
+<span><span class="co">#' @export</span></span>
+<span><span class="co">#' @examples</span></span>
+<span><span class="co">#'   center(c(1, 2, 3), 0)  # should return [1] -1  0  1</span></span>
+<span><span class="va">center</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">desired</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">new_data</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">data</span> <span class="op">-</span> <span class="fu">mean</span><span class="op">(</span><span class="va">data</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="va">desired</span></span>
+<span>  <span class="kw">return</span><span class="op">(</span><span class="va">new_data</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre>
+</div>
+<p>Unsurprisingly, the first line should be a short, descriptive title.
+Additional text paragraphs are possible after leaving one line blank
+with only a <code>#'</code>. The descriptive tags (preceded by an
+<code>@</code>) hold the most important details. Each
+<code>@param</code> documents an input parameter, while
+<code>@return</code> explains the function’s output. The more
+comprehensible a description of its in- and output data (types), the
+easier a function can be integrated into larger analysis pipelines.
+<code>@export</code> means that the function is presented to users,
+after we have <a href="%7B%7B%20page.root%20%7D%7D/reference/#packages">packaged it in a
+later episode</a>.</p>
 <p>Remember that we documented our functions with roxygen comments?
 Let’s try and look it up:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1776,7 +1848,8 @@ Hint: Look at the commit diff.</p>
 <div class="accordion-body">
 <p>We did not yet tell R to actually generate the <code>man</code>ual
 files and folders in our package. This needs to be done with
-<code>roxygen2::roxygenise()</code>.</p>
+<code>roxygen2::roxygenise()</code> or
+<code>devtools::document()</code>.</p>
 </div>
 </div>
 </div>
@@ -1850,7 +1923,7 @@ the command you used</li>
 tell R to run the examples. Using R’s <code>example()</code> function on
 another function’s name saves you from scrolling down its help page,
 copying the example code and pasting it into the console.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1881,7 +1954,7 @@ will be easy to load when more data arrives.</li>
 </button>
 <div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1899,7 +1972,7 @@ will be easy to load when more data arrives.</li>
 <span>  <span class="va">temp_C</span></span>
 <span><span class="op">}</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1917,7 +1990,7 @@ will be easy to load when more data arrives.</li>
 <span>  <span class="va">temp_F</span></span>
 <span><span class="op">}</span></span></code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -1952,7 +2025,8 @@ will be easy to load when more data arrives.</li>
 <li>Every package must have a DESCRIPTION file and an R directory
 containing code. These are created by us.</li>
 <li>A NAMESPACE file is needed as well, and a man directory containing
-documentation, but both can be autogenerated.</li>
+documentation, but both can be autogenerated using
+<code>roxygen2</code>.</li>
 </ul>
 </div>
 </div>
@@ -1960,7 +2034,7 @@ documentation, but both can be autogenerated.</li>
 <p>This was our basic introduction to packaging up R functions. To go on
 from here, remember to functionalise R code that you use repeatedly and
 incorporate it into your personal package.</p>
-<p>This lesson was a adapted from <a href="https://github.com/TIBHannover/FAIR-R" class="external-link uri">https://github.com/TIBHannover/FAIR-R</a> under the
+<p>This lesson was adapted from <a href="https://github.com/TIBHannover/FAIR-R" class="external-link uri">https://github.com/TIBHannover/FAIR-R</a> under the
 CC-by-4.0 Licence.</p>
 </div>
 </section></section>
