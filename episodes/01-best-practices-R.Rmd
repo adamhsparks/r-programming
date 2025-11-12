@@ -199,18 +199,17 @@ Reviews are built into [GitHub's Pull request feature][gh-pr].
 
 ::::::::::::::::::::::::::::::::::::::: challenge
 
-## Challenge: Creating a self-contained project
+## Challenge: Creating a Self-contained Project
 
 We're going to create a new project in RStudio and save some data for later use:
 
 1. Click the "File" menu button, then "New Project".
 2. Click "New Directory".
 3. Click "New Project".
-4. Type in the name of the directory to store your project, e.g. "my\_project".
-5. If available, select the checkbox for "Create a git repository."
-6. Click the "Create Project" button.
-7. In the files window, create a new directory called "data".
-8. Download the file located at <https://github.com/adamhsparks/2025-11-13-COMBINE-WA-morning/blob/main/episodes/data/SAFI_clean.csv> and save it in the "data" directory you just created in your new project folder.
+4. Type in the name of the directory to store your project, _e.g._, "my\_project".
+5. Click the "Create Project" button.
+6. In the Files pane, click on the "New Folder" button and create a new directory called "data".
+7. Download the file located at <https://github.com/adamhsparks/2025-11-13-COMBINE-WA-morning/blob/main/episodes/data/SAFI_clean.csv> and save it in the "data" directory you just created in your new project folder.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
