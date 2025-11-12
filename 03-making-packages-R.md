@@ -57,11 +57,7 @@ Give it a unique, but useful name.
 Your own will work just fine.
 Bonus points for squeezing in an `R` ;-)
 
-<img src="fig/08-RStudio-new-package.png" alt="New package in RStudio" width="500" />
-
-In case you have learned about version control already, it would be good practice to `create a git repository` now and `git commit` each step of building this package.
-
-<img src="fig/08-RStudio-new-package-git.png" alt="Default package files in RStudio's Git pane" width="500" />
+<img src="fig/03-RStudio-new-package.png" alt="New package in RStudio" width="500" />
 
 RStudio's "skeleton" package can already be built, using the `Build > Install and Restart` option.
 Note the `library(...)` line that appears in the console.
