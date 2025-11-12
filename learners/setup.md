@@ -97,7 +97,7 @@ Keeping up with the latest versions of R, RStudio, and any packages you regularl
 
 During the course we will need a number of R packages.
 Packages contain useful R code written by other people.
-We will use the packages `tidyverse`, `devtools`, `here`, `roxygen2`, `knitr` and `desc`.
+We will use the packages `tidyverse`, `devtools`, `here`, `roxygen2`, `knitr`, `usethis` and `desc`.
 
 To try to install these packages, open RStudio and copy and paste the following command into the console window (look for a blinking cursor on the bottom left), then press the <kbd>Enter</kbd> (Windows and Linux) or <kbd>Return</kbd> (macOS) to execute the command.
 
@@ -109,7 +109,8 @@ install.packages(
     "here",
     "roxygen2",
     "knitr",
-    "desc")
+    "desc",
+    "usethis")
 )
 ```
 
@@ -126,6 +127,7 @@ library(here)
 library(roxygen2)
 library(knitr)
 library(desc)
+library(usethis)
 ```
 
 If you do not see an error like `there is no package called ‘...’` you are good to go!

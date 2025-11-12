@@ -71,10 +71,12 @@ How you organize them is up to you.
 Suggestion: organize in a logical manner so that you know which file holds which functions.
 
 ::::::::::::::::::::: callout
+
 I name the file after the function and have one main function per file, sometimes multiples but only the exported function that users see is what the file is named.
 The rest of the functions in the file may be called by the main exported function and that function only.
 Sometimes I have large unexported functions that have their own file as well.
 I also organise shared helper functions, remember, don't repeat yourself, that are not exported (visible to the end user) in an "internal_functions.R" or "utilities.R" file.
+
 :::::::::::::::::::::::::::::
 
 ### Making your first R package
@@ -88,8 +90,6 @@ To start working on this personal package, please open RStudio's `File` menu and
 Give it a unique, but useful name.
 Your own will work just fine.
 Bonus points for squeezing in an `R` ;-)
-
-Also add the `source files` we created earlier (the first versions of `center.R` and `rescale.R`), so that we have some example code right away.
 
 <img src="fig/08-RStudio-new-package.png" alt="New package in RStudio" width="500" />
 
