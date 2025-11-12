@@ -75,12 +75,11 @@ If you already have R and RStudio installed, first check if your R version is up
 - When you open RStudio your R version will be printed in the console on the bottom left. Alternatively, you can type `sessionInfo()` into the console. If your R version is 4.0.0 or later, you don't need to update R for this lesson. If your version of R is older than that, download and install the latest version of R from the R project website [for Windows](https://cran.r-project.org/bin/windows/base/), [for MacOS](https://cran.r-project.org/bin/macosx/), or [for Linux](https://cran.r-project.org/bin/linux/)
 - It is not necessary to remove old versions of R from your system, but if you wish to do so you can check [How do I uninstall R?](https://cran.r-project.org/bin/windows/base/rw-FAQ.html#How-do-I-UNinstall-R_003f)
 - After installing a new version of R, you will have to reinstall all your packages with the new version.
-For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library.
+  For Windows, there is a package called `installr` that can help you with upgrading your R version and migrate your package library.
 - `rig` will allow you to install and switch easily between R versions using Windows, macOS and Linux, and keep your R installation updated.
-See the [documentation](https://github.com/r-lib/rig) for `rig` for more details.
+  See the [documentation](https://github.com/r-lib/rig) for `rig` for more details.
 - To update RStudio to the latest version, open RStudio and click on `Help > Check for Updates`.
-If a new version is available follow the instruction on screen. By default, RStudio will also automatically notify you of new versions every once in a while.
-- You can also use `rig` to manage your R installation and versions.
+  If a new version is available follow the instruction on screen. By default, RStudio will also automatically notify you of new versions every once in a while.
 
 ::::::::::::::::::::: callout
 
