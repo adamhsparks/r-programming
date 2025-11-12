@@ -131,7 +131,7 @@ Adding more `#`s make the heading smaller, i.e. one `#` is a first level heading
 ###### Sub-sub-sub-sub section
 ```
 
-(only use a level if the one above is also in use)
+(only use a level if the one above is also in use).
 
 Since we have already defined our title in the YAML header, we will use a section heading to create an Introduction section.
 
