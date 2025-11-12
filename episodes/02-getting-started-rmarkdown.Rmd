@@ -38,8 +38,6 @@ source("data/download_data.R")
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-::::::::::::
-
 ## Original Lesson
 
 This episode is based on the R for Social Scientists lesson.

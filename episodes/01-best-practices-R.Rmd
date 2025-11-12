@@ -220,11 +220,13 @@ All your data, plots and scripts will now be relative to the project directory.
 RStudio projects have the added benefit of allowing you to open multiple projects at the same time each open to its own project directory.
 This allows you to keep multiple projects open without them interfering with each other.
 
+::::::::::::::::::::::::::::::::::::::: challenge
+
 ## Best Practice Discussion
 
 1. What other suggestions do you have for coding best practices?
 
-:::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
 [swc-lesson-git]: https://swcarpentry.github.io/git-novice/
 [rstudio-git]: https://docs.posit.co/ide/user/ide/guide/tools/version-control.html
