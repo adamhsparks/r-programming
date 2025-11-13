@@ -108,7 +108,6 @@ install.packages(
     "here",
     "roxygen2",
     "knitr",
-    "kable",
     "desc",
     "usethis")
 )
@@ -126,7 +125,6 @@ library(devtools)
 library(here)
 library(roxygen2)
 library(knitr)
-library(kable)
 library(desc)
 library(usethis)
 ```
