@@ -413,6 +413,17 @@ Encoding: UTF-8
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Installing and Loading Your Package
+
+You have a few options for installing and loading your package that you've just built.
+
+You can:
+
+1. Use `devtools::load_all()` in your console, which will load the package in your active R session but will not be available in the future unless you do this again from the package's working directly.
+2. Use `devtools::install()` in your R console, which will install the package locally for you to use by loading it in future R sessions with `library(your_package_name)`.
+3. Put it on GitHub or GitLab or Codeberg and install it using [{remotes}](https://remotes.r-lib.org/reference/install_github.html), [{devtools}](https://devtools.r-lib.org/reference/remote-reexports.html) or [{pak}](https://pak.r-lib.org/), this way you and others can install the package from a remote source and as you make updates, people who have installed your package can update their installed version as well.
+
+
 This was our basic introduction to packaging up R functions.
 To go on from here, remember to functionalise R code that you use repeatedly and incorporate it into your personal package.
 
